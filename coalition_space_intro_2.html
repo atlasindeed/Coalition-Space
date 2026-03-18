@@ -51,7 +51,6 @@
     padding: 40px 24px 80px;
   }
 
-  /* ── HEADER ── */
   .doc-header {
     border-top: 3px solid var(--accent);
     padding-top: 32px;
@@ -82,9 +81,7 @@
     margin-bottom: 8px;
   }
 
-  .doc-title span {
-    color: var(--accent);
-  }
+  .doc-title span { color: var(--accent); }
 
   .doc-subtitle {
     font-family: 'Barlow Condensed', sans-serif;
@@ -116,10 +113,7 @@
     text-transform: uppercase;
   }
 
-  /* ── SECTION ── */
-  .section {
-    margin-bottom: 48px;
-  }
+  .section { margin-bottom: 48px; }
 
   .section-header {
     display: flex;
@@ -146,16 +140,9 @@
     color: var(--text-bright);
   }
 
-  .section p {
-    margin-bottom: 14px;
-    color: var(--text);
-  }
+  .section p { margin-bottom: 14px; color: var(--text); }
+  .section p:last-child { margin-bottom: 0; }
 
-  .section p:last-child {
-    margin-bottom: 0;
-  }
-
-  /* ── CALLOUT BOXES ── */
   .callout {
     border-left: 3px solid var(--accent);
     background: var(--panel);
@@ -175,15 +162,8 @@
     margin-bottom: 8px;
   }
 
-  .callout p {
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--text);
-    margin-bottom: 8px;
-  }
-
+  .callout p { font-size: 14px; line-height: 1.6; color: var(--text); margin-bottom: 8px; }
   .callout p:last-child { margin-bottom: 0; }
-
   .callout.red { border-left-color: var(--red); }
   .callout.red::before { color: var(--red); }
   .callout.blue { border-left-color: var(--blue-bright); }
@@ -191,7 +171,6 @@
   .callout.green { border-left-color: var(--green); }
   .callout.green::before { color: var(--green); }
 
-  /* ── FACTION CARDS ── */
   .faction-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -242,20 +221,9 @@
   .faction-card.blue-accent .faction-tag { color: var(--blue-bright); }
   .faction-card.red-accent .faction-tag { color: var(--red); }
   .faction-card.green-accent .faction-tag { color: var(--green); }
+  .faction-desc { font-size: 13px; line-height: 1.6; color: var(--text-dim); }
 
-  .faction-desc {
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--text-dim);
-  }
-
-  /* ── STAT BLOCKS ── */
-  .stat-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin: 16px 0;
-  }
+  .stat-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
 
   .stat-block {
     background: var(--panel);
@@ -282,13 +250,7 @@
     letter-spacing: 0.02em;
   }
 
-  /* ── EXAM SECTION ── */
-  .exam-phase {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 16px;
-    align-items: flex-start;
-  }
+  .exam-phase { display: flex; gap: 16px; margin-bottom: 16px; align-items: flex-start; }
 
   .phase-num {
     font-family: 'Share Tech Mono', monospace;
@@ -310,14 +272,8 @@
     margin-bottom: 4px;
   }
 
-  .phase-content p {
-    font-size: 14px;
-    color: var(--text-dim);
-    line-height: 1.6;
-    margin-bottom: 0;
-  }
+  .phase-content p { font-size: 14px; color: var(--text-dim); line-height: 1.6; margin-bottom: 0; }
 
-  /* ── PULL QUOTE ── */
   .pull-quote {
     margin: 32px 0;
     padding: 24px 32px;
@@ -327,8 +283,7 @@
     position: relative;
   }
 
-  .pull-quote::before,
-  .pull-quote::after {
+  .pull-quote::before, .pull-quote::after {
     content: '//';
     font-family: 'Share Tech Mono', monospace;
     color: var(--accent);
@@ -362,13 +317,7 @@
     margin-top: 10px;
   }
 
-  /* ── TABLE ── */
-  .data-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 16px 0;
-    font-size: 13px;
-  }
+  .data-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
 
   .data-table th {
     font-family: 'Share Tech Mono', monospace;
@@ -390,10 +339,8 @@
   }
 
   .data-table tr:last-child td { border-bottom: none; }
-
   .data-table tr:hover td { background: rgba(255,255,255,0.02); }
 
-  /* ── FOOTER ── */
   .doc-footer {
     margin-top: 64px;
     padding-top: 16px;
@@ -413,7 +360,6 @@
     text-transform: uppercase;
   }
 
-  /* ── DIVIDER ── */
   .divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--border), transparent);
@@ -438,8 +384,8 @@
 
   .nav-link {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.15em;
+    font-size: 10px;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--coal);
     background: var(--accent);
@@ -447,17 +393,21 @@
     text-decoration: none;
     display: inline-block;
     transition: background 0.15s;
-    white-space: nowrap;
+    position: absolute;
+    top: 32px;
+    right: 0;
   }
   .nav-link:hover { background: var(--accent-bright); }
-  .header-right { display: flex; align-items: flex-start; justify-content: flex-end; margin-bottom: 16px; }
+  @media (max-width: 600px) {
+    .nav-link { position: static; display: block; margin-bottom: 16px; text-align: center; }
+  }
 </style>
 </head>
 <body>
 <div class="page-wrap">
 
-  <!-- HEADER -->
   <header class="doc-header">
+    <a href="index.html" class="nav-link">← Hub</a>
     <div class="doc-meta">
       <span>COALITION ADMINISTRATIVE AUTHORITY</span>
       <span>DOCUMENT TYPE: ORIENTATION PACKET</span>
@@ -466,12 +416,9 @@
     <div class="doc-title">COALITION<br><span>SPACE</span></div>
     <div class="doc-subtitle">Player Orientation — Lancer Campaign Setting</div>
     <div class="header-rule"></div>
-    <div class="header-right">
-      <a href="coalition_space_map.html" class="nav-link">▮ Sector Chart →</a>
-    </div>
+    <div class="classification-band">▮ WELCOME TO THE OUTER BANDS</div>
   </header>
 
-  <!-- SECTION 01: WHAT IS COALITION SPACE -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">01</span>
@@ -480,11 +427,9 @@
     <p>Coalition Space is not for the unprepared. It is what happens when human beings push far enough out into the black that the nearest Union administrative office is a three-week transit away and the nearest Union military response is three weeks after that.</p>
     <p>Geographically, Coalition Space encompasses the outer settlement clusters, ore belts, and transit corridors that form the trailing edge of organized human expansion in this region. The anchor is the <strong>Karrow Belt</strong> — a vast arc of mineral-rich debris that has driven settlement, commerce, and conflict here for over a century. Surrounding it are the shipping lanes, the deep-anchor stations, the agricultural settlements, and the long, dark stretches of nothing in between.</p>
     <p>The people of Coalition Space tend to be practical, self-reliant, and possessed of very little patience for bureaucracy, except their own, which they have developed over generations.</p>
-
     <div class="callout" data-label="Setting Note">
       <p>Coalition Space sits at the intersection of frontier pragmatism and genuine civic pride. It is not a lawless frontier. It has laws, institutions, and culture. What it lacks is the dense administrative infrastructure of core Union space.</p>
     </div>
-
     <div class="stat-row">
       <div class="stat-block">
         <div class="stat-label">Region Classification</div>
@@ -505,7 +450,6 @@
     </div>
   </section>
 
-  <!-- SECTION 02: THE COALITION -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">02</span>
@@ -514,8 +458,6 @@
     <p>The Coalition began as a transit and trade compact between the six largest station-operators in the region, roughly one hundred and ninety years ago, when it became clear that Union administrative response times were incompatible with the pace of events in the Outer Bands.</p>
     <p>The Union recognizes the Coalition as a <strong>semi-autonomous administrative authority</strong>; technically a local arm of Union governance, entitled to exercise Union administrative powers within defined parameters. In practice, the Coalition interprets those parameters generously.</p>
     <p>The relationship is functional but permanently tense. Coalition space produces resources that Union wants. Union provides legitimacy and backstop guarantees that Coalition needs. Neither side entirely trusts the other.</p>
-
-    
     <h3 style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 16px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-bright); margin: 24px 0 12px;">Coalition Institutions</h3>
     <div class="faction-grid">
       <div class="faction-card blue-accent">
@@ -541,7 +483,6 @@
     </div>
   </section>
 
-  <!-- SECTION 03: LIFE IN COALITION SPACE -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">03</span>
@@ -551,27 +492,23 @@
     <p>The Belt is the economic engine. Ore, ice, rare earth compounds, and trace elements fuel the refineries and the refineries fuel the settlements and the settlements are where people live and raise children and argue about water rights and run shops and fall in love and die of old age if they're lucky. This is the work of The Coalition.</p>
     <p>Piracy is a real and persistent problem in the outer transit corridors. Claim-jumping in the Belt happens with enough regularity that the Guild has its own internal arbitration process. Corporate interests from the inner lanes periodically attempt to establish more formal footholds in Coalition Space, which the Coalition resists with the particular stubbornness of people who have built something themselves and do not want it taken from them by people with better lawyers.</p>
     <p>The deep-anchor stations are the social hubs. Kessel-7, Port Amaranth, the Drift, Waystation Orvane. These are the places where routes intersect, where information moves, where deals are made and disputes are settled and people from very different lives end up at adjacent barstools. The culture of these stations is cosmopolitan.</p>
-
     <div class="pull-quote">
       <p>"A falling knife has no handle."</p>
       <cite>— Common expression, origin debated</cite>
     </div>
   </section>
 
-  <!-- SECTION 04: LANCERS IN COALITION SPACE -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">04</span>
       <h2 class="section-title">Lancers in Coalition Space</h2>
     </div>
-    <p>In core Union space, becoming a Lancer is many things: a career track, a status marker, a military credential, the end result of a formal training pipeline. Here, it is something both simpler and more complicated. There are no training academies. There is no dedicated Lancer corps with uniforms and institutional culture. There is an exam, a licensing board, and a question that the licensing board is trying to answer: <em>is this person capable of operating a 
+    <p>In core Union space, becoming a Lancer is many things: a career track, a status marker, a military credential, the end result of a formal training pipeline. Here, it is something both simpler and more complicated. There are no training academies. There is no dedicated Lancer corps with uniforms and institutional culture. There is an exam, a licensing board, and a question that the licensing board is trying to answer: <em>is this person capable of operating a mech responsibly in conditions that will test them?</em></p>
     <p>Licensed Lancers in Coalition Space operate in a variety of roles: CDF contract work, private security for operators and transit companies, independent contracts, and occasionally direct engagement in crisis situations that don't fit neatly into any category. There is no mandatory service. There is, however, a cultural expectation that the license means something, and that using it purely for profit while the community that granted it suffers is a kind of failure.</p>
     <p>This expectation is unwritten and unenforceable. It is also, in practice, nearly universal. Coalition Space is the kind of place where people remember who showed up and who didn't.</p>
-
     <div class="callout" data-label="Tone Note for Players">
       <p>Lancers here are not heroes in the capital-H sense. They are highly capable people in a community that needs capable people and has found a way to certify them.</p>
     </div>
-
     <table class="data-table">
       <thead>
         <tr>
@@ -594,7 +531,7 @@
         <tr>
           <td><span class="mono">LL2–LL4</span></td>
           <td>Senior Operator</td>
-          <td>Experienced field record. Eligible for The Coalition's higher-risk contracts.</td>
+          <td>Experienced field record. Eligible for higher-risk contracts.</td>
         </tr>
         <tr>
           <td><span class="mono">LL5+</span></td>
@@ -605,7 +542,6 @@
     </table>
   </section>
 
-  <!-- SECTION 05: THE EXAMINATION -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">05</span>
@@ -613,27 +549,24 @@
     </div>
     <p>The Coalition Lancer Licensing Examination is not a written test. It is not a simulation. The Licensing Board's position, held without exception since the board's founding, is that there is no substitute for finding out what a person does when the situation is real and the stakes are real.</p>
     <p>Candidates are assigned an <strong>Everest-class general-frame mech</strong> chosen for its reliability, its versatility, and its lack of forgiveness for poor fundamentals. The Everest does not compensate for bad habits. It does not have systems that cover for operator error. What it does, it does solidly, and what you bring to it is what you have.</p>
-    <p>Each candidate receives an examination mission: a real operational situation that the CDF or a licensed Board contractor has flagged as appropriate for evaluation. "Appropriate" means, in practice: genuinely difficult, genuinely consequential, and not so far outside a competent operator's capacity that failure is the expected outcome. The Board does not send candidates to die. It sends them somewhere they might, and watches what they do about it.</p>
-    <p>Examination missions are not monitored in real-time in any way candidates are told about. In practice, the Board has methods. What it is looking for is not success in the narrow tactical sense, it is looking for <em>judgment</em>. Technical competence is the floor, not the ceiling. Any candidate who reaches the exam stage has demonstrated technical competence. What the Board wants to see is what you do when technical competence isn't enough, when the situation changes, when the person you're trying to help makes it harder, when the right answer isn't the easy one.</p>
-
-    <div class="callout red" data-label="For the GM">
-      <p>The exam does not need to be a combat mission. It can be. It doesn't have to be. The Board licenses people who can fight; it also licenses people who can think, decide, and act under pressure. The best examination missions are the ones where "winning" is complicated.</p>
+    <p>Each candidate receives an examination mission: a real operational situation that the CDF or a licensed Board contractor has flagged as appropriate for evaluation. The Board does not send candidates to die. It sends them somewhere they might, and watches what they do about it.</p>
+    <p>What the Board is looking for is not success in the narrow tactical sense — it is looking for <em>judgment</em>. Technical competence is the floor, not the ceiling.</p>
+    <div class="callout red" data-label="GM Note">
+      <p>The exam does not need to be a combat mission. It can be. It doesn't have to be. The Board licenses people who can fight; it also licenses people who can think, decide, and act under pressure.</p>
     </div>
-
     <h3 style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 16px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-bright); margin: 24px 0 16px;">Examination Structure</h3>
-
     <div class="exam-phase">
       <div class="phase-num">01</div>
       <div class="phase-content">
         <div class="phase-title">Assignment & Briefing</div>
-        <p>Candidates receive a dossier, a frame assignment, and a mission brief. The brief is accurate as of when it was written. Conditions in the field may have changed. This is considered part of the evaluation.</p>
+        <p>Candidates receive a dossier, a frame assignment, and a mission brief. The brief is accurate as of when it was written. Conditions in the field may have changed.</p>
       </div>
     </div>
     <div class="exam-phase">
       <div class="phase-num">02</div>
       <div class="phase-content">
         <div class="phase-title">Deployment — LL0 / Everest Frame</div>
-        <p>Candidates deploy to the operational area. They have full access to their Coalition COMP/CON license at LL0, which means access to the Everest's standard systems and the baseline tactical database. Nothing more. Nothing less.</p>
+        <p>Candidates deploy to the operational area with full access to their Coalition COMP/CON license at LL0.</p>
       </div>
     </div>
     <div class="exam-phase">
@@ -647,23 +580,20 @@
       <div class="phase-num">04</div>
       <div class="phase-content">
         <div class="phase-title">Debrief & Certification</div>
-        <p>Candidates who complete the examination mission are certified at <strong>LL1</strong>. Their Coalition COMP/CON license is updated. Their frame access expands. This happens within forty-eight hours of mission completion, at the discretion of the reviewing Board officer. There is no ceremony.</p>
+        <p>Candidates who complete the examination mission are certified at <strong>LL1</strong>. There is no ceremony.</p>
       </div>
     </div>
-
-    <div class="callout green" data-label="Player Note — Your Characters at LL0">
-      <p>You begin the campaign as examination candidates. You are not rookies. You are people who have been doing something difficult and real for long enough that the Board noticed you. You have been evaluated informally for months or years before you were offered a slot.</p>
+    <div class="callout green" data-label="Your Characters at LL0">
+      <p>You begin the campaign as examination candidates. You are not rookies. You are people who have been doing something difficult and real for long enough that the Board noticed you.</p>
     </div>
   </section>
 
-  <!-- SECTION 06: GETTING STARTED -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">06</span>
       <h2 class="section-title">Getting Started — Who Are You?</h2>
     </div>
     <p>Characters from Coalition Space tend to have histories. They were doing something before the exam. Most of that something was unglamorous and often dangerous and mattered in ways that didn't get written down anywhere.</p>
-
     <h3 style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 16px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-bright); margin: 24px 0 12px;">Sample Backgrounds</h3>
     <table class="data-table">
       <thead>
@@ -676,7 +606,7 @@
       <tbody>
         <tr>
           <td><strong>Belt Worker</strong></td>
-          <td>How the ore-field thinks. Close-quarters problem solving. The practical knowledge from working in dangerous systems that can kill you instantly.</td>
+          <td>How the ore-field thinks. Close-quarters problem solving. Practical knowledge from dangerous systems.</td>
           <td>That some problems require a different kind of leverage than the ones you're used to.</td>
         </tr>
         <tr>
@@ -686,22 +616,21 @@
         </tr>
         <tr>
           <td><strong>Independent Hauler</strong></td>
-          <td>The lanes. Navigation. Risk calculus. How to read a situation from its margins. How to talk to anyone.</td>
+          <td>The lanes. Navigation. Risk calculus. How to read a situation from its margins.</td>
           <td>That you've been making high-stakes decisions alone. A frame just makes those decisions more expensive.</td>
         </tr>
         <tr>
           <td><strong>Star Rat</strong></td>
-          <td>What people look like when they've been waiting to die. How to matter to someone in a very bad moment. Structural assessment, emergency systems, the geography of crisis.</td>
-          <td>That a mech can go places a hauler can't, and reach some problems before they become the kind you respond to after.</td>
+          <td>What people look like when they've been waiting to die. Emergency systems, structural assessment, the geography of crisis.</td>
+          <td>That a mech can go places a hauler can't, and reach problems before they become the kind you respond to after.</td>
         </tr>
         <tr>
           <td><strong>Station-Born</strong></td>
-          <td>How communities work, how information moves, where the pressure points are. The informal economy. Who owes whom what and why it matters.</td>
+          <td>How communities work, how information moves, where the pressure points are. The informal economy.</td>
           <td>That the station looking up at a mech in the sky is still the station that gave you everything you know.</td>
         </tr>
       </tbody>
     </table>
-
     <div class="pull-quote">
       <p>"The Board doesn't want to know if you're brave. Everyone who walks in here is brave. They want to know if you're gonna crack under pressure."</p>
       <cite>— Attributed to a Licensing Board officer, exact source unknown</cite>
@@ -710,14 +639,12 @@
 
   <div class="divider"></div>
 
-  <!-- CLOSING -->
   <section class="section">
     <p style="color: var(--text-dim); font-size: 14px; line-height: 1.8;">Coalition Space is a community at the edge of what it can manage. The dark is very large and the ships are very small and there are, right now, people in distress in a hundred places that no formal institution will reach in time.</p>
     <p style="color: var(--text-dim); font-size: 14px; line-height: 1.8;">You are going to be one of the people who can do something about that. Not the only thing. Not always the right thing. But something, when it matters, with your hands and your judgment and the machine they're about to trust you with.</p>
     <p style="color: var(--text-bright); font-size: 14px; line-height: 1.8; margin-top: 20px;">That's enough.</p>
   </section>
 
-  <!-- FOOTER -->
   <footer class="doc-footer">
     <div class="footer-text">Coalition Administrative Authority — Lancer Licensing Board</div>
     <div class="footer-text">Orientation Document — General Distribution</div>
@@ -727,3 +654,15 @@
 </div>
 </body>
 </html>
+```
+
+---
+
+**`coalition_space_map.html`** is too large to paste in full here cleanly. The only change in that file is one line — open it in GitHub's editor, find this:
+```
+<a href="coalition_space_intro_2.html" class="nav-link">← Orientation Packet</a>
+```
+
+And change it to:
+```
+<a href="index.html" class="nav-link">← Hub</a>
