@@ -4,22 +4,97 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Coalition Space — Lancer Supplement</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@900&display=swap" rel="stylesheet">
 <style>
-  body { background: #0a0c10; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; font-family: 'Share Tech Mono', monospace; }
-  .hub { text-align: center; }
-  h1 { color: #e8a020; font-size: 48px; margin-bottom: 8px; }
-  p { color: #6a7888; font-size: 12px; letter-spacing: 0.1em; margin-bottom: 32px; }
-  a { display: block; color: #0a0c10; background: #e8a020; padding: 12px 28px; text-decoration: none; margin-bottom: 10px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; }
-  a:hover { background: #ffcc55; }
+  :root {
+    --coal:   #0d0f12;
+    --ink:    #141820;
+    --panel:  #1a1f2a;
+    --border: #2a3245;
+    --text:   #c8d0dc;
+    --dim:    #7a8899;
+    --bright: #e8edf5;
+    --accent: #e8a020;
+    --accent-hi: #ffcc55;
+    --scan: rgba(255,255,255,0.015);
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--coal);
+    color: var(--text);
+    font-family: 'Share Tech Mono', monospace;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, var(--scan) 2px, var(--scan) 4px);
+  }
+  .hub { width: 100%; max-width: 480px; padding: 32px 24px 40px; }
+  .hub-header { border-top: 3px solid var(--accent); padding-top: 20px; margin-bottom: 32px; }
+  .hub-meta { font-size: 8px; color: var(--dim); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 8px; }
+  .hub-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 52px; line-height: 0.88; text-transform: uppercase; color: var(--bright); margin-bottom: 4px; }
+  .hub-title span { color: var(--accent); }
+  .hub-sub { font-size: 9px; color: var(--dim); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 10px; }
+  .hub-rule { height: 1px; background: linear-gradient(90deg, var(--border), transparent); margin: 20px 0; }
+  .nav-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
+  .nav-item { display: flex; align-items: stretch; background: var(--panel); border: 1px solid var(--border); text-decoration: none; transition: border-color 0.15s, background 0.15s; -webkit-tap-highlight-color: transparent; }
+  .nav-item:hover, .nav-item:active { border-color: var(--accent); background: var(--ink); }
+  .nav-accent { width: 3px; background: var(--accent); flex-shrink: 0; transition: width 0.15s; }
+  .nav-item:hover .nav-accent { width: 5px; }
+  .nav-content { padding: 12px 16px; flex: 1; }
+  .nav-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 18px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--bright); margin-bottom: 2px; }
+  .nav-desc { font-size: 9px; color: var(--dim); letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.4; }
+  .nav-arrow { display: flex; align-items: center; padding: 0 14px; font-size: 16px; color: var(--accent); flex-shrink: 0; }
+  .hub-footer { font-size: 8px; color: var(--dim); letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.8; border-top: 1px solid var(--border); padding-top: 16px; }
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="hub">
-  <h1>COALITION SPACE</h1>
-  <p>A Lancer RPG Supplement — Outer Bands / Karrow Region</p>
-  <a href="coalition_space_intro_2.html">▮ Orientation Packet</a>
-  <a href="coalition_space_map.html">▮ Sector Chart</a>
+  <div class="hub-header">
+    <div class="hub-meta">A Lancer TTRPG Supplement</div>
+    <div class="hub-title">Coalition<br><span>Space</span></div>
+    <div class="hub-sub">Outer Bands — Karrow Region</div>
+  </div>
+  <div class="hub-rule"></div>
+  <nav class="nav-list">
+    <a href="coalition_space_intro_2.html" class="nav-item">
+      <div class="nav-accent"></div>
+      <div class="nav-content">
+        <div class="nav-label">Orientation Packet</div>
+        <div class="nav-desc">Setting overview · Factions · Backgrounds · Getting started</div>
+      </div>
+      <div class="nav-arrow">▶</div>
+    </a>
+    <a href="coalition_space_map.html" class="nav-item">
+      <div class="nav-accent"></div>
+      <div class="nav-content">
+        <div class="nav-label">Sector Chart</div>
+        <div class="nav-desc">Interactive map · 11 locations · Transit corridors</div>
+      </div>
+      <div class="nav-arrow">▶</div>
+    </a>
+    <a href="coalition_space_combat_ref.html" class="nav-item">
+      <div class="nav-accent"></div>
+      <div class="nav-content">
+        <div class="nav-label">Combat Reference</div>
+        <div class="nav-desc">Turn structure · Actions · Conditions · Heat · Damage tables</div>
+      </div>
+      <div class="nav-arrow">▶</div>
+    </a>
+    <a href="coalition_space_glossary.html" class="nav-item">
+      <div class="nav-accent"></div>
+      <div class="nav-content">
+        <div class="nav-label">Pilot Glossary</div>
+        <div class="nav-desc">Terminology · Slang · Lore · Factions · Tech</div>
+      </div>
+      <div class="nav-arrow">▶</div>
+    </a>
+  </nav>
+  <div class="hub-footer">
+    This is not an official Lancer product.<br>
+    Not affiliated with or endorsed by Massif Press.<br>
+    Lancer is published by Massif Press.
+  </div>
 </div>
 </body>
 </html>
