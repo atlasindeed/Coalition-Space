@@ -520,6 +520,29 @@ body {
 .badge.quick { color: var(--blue-bright); border-color: var(--blue-dim); }
 .badge.react { color: var(--green);       border-color: var(--green-dim); }
 
+/* ── TIPS LIST ── */
+.tips-list { display: flex; flex-direction: column; gap: 6px; }
+.tip-item {
+  padding: 7px 10px;
+  background: var(--ink);
+  border-left: 2px solid var(--accent-dim);
+}
+.tip-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-hi);
+  margin-bottom: 3px;
+}
+.tip-desc {
+  font-size: 11px;
+  line-height: 1.55;
+  color: var(--text);
+}
+.tip-desc strong { font-weight: 600; color: var(--bright); }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 1000px) {
   .col-3 { grid-column: span 4; }
@@ -607,7 +630,7 @@ body {
         </div>
         <div class="action-item full">
           <div class="action-name">Stabilize</div>
-          <div class="action-note">Choose one: <em>cool all Heat</em>, or <em>spend 1 Repair to restore HP</em>. Also clears Exposed, Jammed, or 1 condition.</div>
+          <div class="action-note">Choose one: <em>cool all Heat</em> (clears Exposed, Jammed, <strong>and</strong> 1 other condition) — or <em>spend 1 Repair</em> to restore HP equal to your Repair value.</div>
         </div>
         <div class="action-item full">
           <div class="action-name">Full Tech</div>
@@ -912,7 +935,7 @@ body {
         </tbody>
       </table>
       <div class="death-note">
-        <strong>Pilot Death:</strong> An injured pilot hit again makes a Hull save. Failure means death. Success: survive at 1 HP, mech destroyed. Pilots can eject from a destroyed mech as a reaction.
+        <strong>Pilot Death:</strong> A pilot is <em>injured</em> on a Crushing Hit structure result. An injured pilot who takes any further damage makes a Hull save — failure means death, success means they survive at 1 HP. Pilots can eject from a destroyed mech as a free action.
       </div>
     </div>
 
@@ -976,7 +999,7 @@ body {
       <div class="conditions-list">
         <div class="condition-row" style="grid-template-columns: 110px 1fr;">
           <div class="cond-name green">Stabilize</div>
-          <div class="cond-effect">Full Action. Choose: <strong>cool all Heat</strong> (+ clear Exposed/Jammed/1 condition) OR <strong>spend 1 Repair</strong> to restore HP equal to your Repair value.</div>
+          <div class="cond-effect">Full Action. Choose: <strong>cool all Heat</strong> (clears Exposed, Jammed, <strong>and</strong> 1 other condition — all three) OR <strong>spend 1 Repair</strong> to restore HP equal to your Repair value.</div>
         </div>
         <div class="condition-row" style="grid-template-columns: 110px 1fr;">
           <div class="cond-name green">Repair (Rest)</div>
@@ -984,7 +1007,7 @@ body {
         </div>
         <div class="condition-row" style="grid-template-columns: 110px 1fr;">
           <div class="cond-name green">Full Repair</div>
-          <div class="cond-effect">Between sessions or major downtime. Reset to full HP, full Heat Cap, full Repair Cap, clear all conditions and structure damage.</div>
+          <div class="cond-effect">Requires ~10 hours downtime. Restores full HP, Structure, Stress, and Repair Cap. Clears all conditions and statuses. Resets Overcharge counter. Recovers Core Power. Restores all Limited uses.</div>
         </div>
         <div class="condition-row" style="grid-template-columns: 110px 1fr;">
           <div class="cond-name">Structure</div>
@@ -1000,34 +1023,34 @@ body {
     <!-- ══ QUICK REMINDER ══ -->
     <div class="card accent col-7" id="sec-tips">
       <div class="card-title">Things to Remember at the Table</div>
-      <div class="conditions-list">
-        <div class="condition-row" style="grid-template-columns: 160px 1fr;">
-          <div class="cond-name">Bonus damage</div>
-          <div class="cond-effect">Bonus damage dice (from talents, systems, etc.) are rolled separately and added after the main roll. On a crit, bonus damage dice are also rolled twice.
+      <div class="tips-list">
+        <div class="tip-item">
+          <div class="tip-name">Bonus damage</div>
+          <div class="tip-desc">Bonus damage dice (from talents, systems, etc.) are rolled separately and added after the main roll. On a crit, bonus damage dice are also rolled twice.</div>
         </div>
-        <div class="condition-row" style="grid-template-columns: 160px 1fr;">
-          <div class="cond-name">Armor floor</div>
-          <div class="cond-effect">Armor cannot reduce damage below 1 on a hit. You always take at least 1.</div>
+        <div class="tip-item">
+          <div class="tip-name">Armor floor</div>
+          <div class="tip-desc">Armor cannot reduce damage below 1 on a hit. You always take at least 1.</div>
         </div>
-        <div class="condition-row" style="grid-template-columns: 160px 1fr;">
-          <div class="cond-name">Crit = roll twice</div>
-          <div class="cond-effect">On a crit, roll all damage dice twice and take the <strong>higher</strong> of the two rolls, then add flat bonuses once.</div>
+        <div class="tip-item">
+          <div class="tip-name">Crit = roll twice</div>
+          <div class="tip-desc">On a crit, roll all damage dice twice and take the <strong>higher</strong> of the two rolls, then add flat bonuses once.</div>
         </div>
-        <div class="condition-row" style="grid-template-columns: 160px 1fr;">
-          <div class="cond-name">Reactions reset</div>
-          <div class="cond-effect">You get 1 reaction per round. It resets at the <strong>start of your turn</strong>, not end of round.</div>
+        <div class="tip-item">
+          <div class="tip-name">Reactions reset</div>
+          <div class="tip-desc">You get 1 reaction per round. It resets at the <strong>start of your turn</strong>, not end of round.</div>
         </div>
-        <div class="condition-row" style="grid-template-columns: 160px 1fr;">
-          <div class="cond-name">Boost ≠ Move</div>
-          <div class="cond-effect">Boost is a separate Quick Action that lets you move again — it's not part of your standard move.</div>
+        <div class="tip-item">
+          <div class="tip-name">Boost ≠ Move</div>
+          <div class="tip-desc">Boost is a separate Quick Action that lets you move again — it's not part of your standard move.</div>
         </div>
-        <div class="condition-row" style="grid-template-columns: 160px 1fr;">
-          <div class="cond-name">Tech vs Evasion</div>
-          <div class="cond-effect">Tech attacks target <strong>E-Defense</strong>, not Evasion. Check which your weapon uses.</div>
+        <div class="tip-item">
+          <div class="tip-name">Tech vs Evasion</div>
+          <div class="tip-desc">Tech attacks target <strong>E-Defense</strong>, not Evasion. Check which your weapon uses.</div>
         </div>
-        <div class="condition-row" style="grid-template-columns: 160px 1fr;">
-          <div class="cond-name">HP ≠ Death</div>
-          <div class="cond-effect">Hitting 0 HP triggers Structure damage — you're not dead yet. Your mech might be on fire, but it's still a mech.</div>
+        <div class="tip-item">
+          <div class="tip-name">HP ≠ Death</div>
+          <div class="tip-desc">Hitting 0 HP triggers Structure damage — you're not dead yet. Your mech might be on fire, but it's still a mech.</div>
         </div>
       </div>
     </div>
@@ -1056,4 +1079,4 @@ function jumpToCard(id) {
 }
 </script>
 </body>
-</html>
+          </html>
