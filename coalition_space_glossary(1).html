@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coalition Space — Glossary</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --coal:        #0d0f12;
+  --ink:         #141820;
+  --panel:       #1a1f2a;
+  --panel2:      #1e2535;
+  --border:      #2a3245;
+  --border2:     #3d5070;
+  --text:        #c8d0dc;
+  --dim:         #7a8899;
+  --bright:      #e8edf5;
+  --accent:      #e8a020;
+  --accent-dim:  #a06810;
+  --accent-hi:   #ffcc55;
+  --red:         #c03030;
+  --red-dim:     #601010;
+  --green:       #3a8a5a;
+  --green-dim:   #1a3a28;
+  --blue:        #2a6aaa;
+  --blue-bright: #4a9adf;
+  --blue-dim:    #0a2a4a;
+  --purple:      #7a4aaa;
+  --purple-dim:  #2a0a4a;
+  --scan: rgba(255,255,255,0.015);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--coal);
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.7;
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, var(--scan) 2px, var(--scan) 4px);
+}
+
+.page { max-width: 960px; margin: 0 auto; padding: 32px 24px 80px; }
+
+/* ── HEADER ── */
+.doc-header {
+  border-top: 3px solid var(--accent);
+  padding-top: 24px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.doc-meta {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px;
+  color: var(--accent-dim);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.doc-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: var(--bright);
+}
+.doc-title span { color: var(--accent); }
+.doc-subtitle {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  color: var(--dim);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+.nav-link {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--coal);
+  background: var(--accent);
+  padding: 7px 14px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.15s;
+  align-self: flex-start;
+  margin-top: 8px;
+  white-space: nowrap;
+}
+.nav-link:hover { background: var(--accent-hi); }
+
+/* ── ALPHA FILTER BAR ── */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.filter-btn {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all 0.12s;
+  -webkit-tap-highlight-color: transparent;
+}
+.filter-btn:hover, .filter-btn.active {
+  color: var(--accent-hi);
+  border-color: var(--accent-dim);
+  background: var(--ink);
+}
+.filter-btn.all-btn {
+  color: var(--accent);
+  border-color: var(--accent-dim);
+}
+.filter-btn.all-btn.active, .filter-btn.all-btn:hover {
+  background: var(--accent);
+  color: var(--coal);
+  border-color: var(--accent);
+}
+
+/* ── SECTION HEADERS ── */
+.alpha-section { margin-bottom: 32px; }
+.alpha-section.hidden { display: none; }
+.alpha-heading {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+  text-transform: uppercase;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── ENTRY GRID ── */
+.entry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 8px;
+}
+
+/* ── ENTRY ── */
+.entry {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--border2);
+  padding: 10px 14px;
+  transition: border-color 0.12s;
+}
+.entry:hover { border-left-color: var(--accent); }
+
+/* category tints */
+.entry.cat-lore   { border-left-color: var(--blue-bright); }
+.entry.cat-slang  { border-left-color: var(--green); }
+.entry.cat-mech   { border-left-color: var(--accent); }
+.entry.cat-faction{ border-left-color: var(--purple); }
+.entry.cat-combat { border-left-color: var(--red); }
+.entry.cat-tech   { border-left-color: var(--blue-bright); }
+.entry.cat-pilot  { border-left-color: var(--accent); }
+
+.entry-term {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bright);
+  margin-bottom: 2px;
+  line-height: 1.1;
+}
+.entry-alt {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px;
+  color: var(--dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.entry-tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 7px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 1px 5px;
+  border: 1px solid currentColor;
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  vertical-align: middle;
+}
+.tag-lore    { color: var(--blue-bright); }
+.tag-slang   { color: var(--green); }
+.tag-mech    { color: var(--accent); }
+.tag-faction { color: var(--purple); }
+.tag-combat  { color: var(--red); }
+.tag-tech    { color: var(--blue-bright); }
+.tag-pilot   { color: var(--accent-hi); }
+.tag-setting { color: var(--dim); }
+
+.entry-def {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text);
+}
+.entry-def em { font-style: italic; color: var(--bright); }
+.entry-def strong { font-weight: 600; color: var(--bright); }
+.entry-example {
+  margin-top: 6px;
+  padding: 5px 10px;
+  background: var(--ink);
+  border-left: 2px solid var(--border2);
+  font-size: 11px;
+  color: var(--dim);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* ── LEGEND ── */
+.legend-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+  padding: 10px 14px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px;
+  color: var(--dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.legend-swatch {
+  width: 8px; height: 8px;
+  border-radius: 0;
+  flex-shrink: 0;
+}
+
+/* ── FOOTER ── */
+.doc-footer {
+  margin-top: 48px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px;
+  color: var(--dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 720px) {
+  .page { padding: 20px 14px 60px; }
+  .doc-header { flex-direction: column; align-items: flex-start; }
+  .entry-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="doc-header">
+    <div>
+      <div class="doc-meta">Coalition Space — Field Reference &nbsp;|&nbsp; Lancer TTRPG</div>
+      <div class="doc-title">PILOT<br><span>GLOSSARY</span></div>
+      <div class="doc-subtitle">Terminology · Slang · Lore · Factions · Tech</div>
+    </div>
+    <a href="index.html" class="nav-link">← Back to Hub</a>
+  </header>
+
+  <!-- LEGEND -->
+  <div class="legend-bar">
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--accent)"></div>Mech / Combat</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--green)"></div>Pilot Slang</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--blue-bright)"></div>Lore / Setting</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--purple)"></div>Factions</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--red)"></div>Combat Terms</div>
+  </div>
+
+  <!-- ALPHA FILTER -->
+  <div class="filter-bar" id="filter-bar">
+    <button class="filter-btn all-btn active" onclick="filterSection('all')">All</button>
+  </div>
+
+  <!-- ENTRIES -->
+  <div id="glossary-body"></div>
+
+  <footer class="doc-footer">
+    <span>Coalition Space — Pilot Glossary</span>
+    <span>Based on Lancer by Massif Press</span>
+    <span>This is not an official Lancer product. Not affiliated with or endorsed by Massif Press.</span>
+  </footer>
+
+</div>
+
+<script>
+const entries = [
+
+  // ── A ──
+  {
+    term: "Armiger",
+    alt: "also: Frame Pilot, Cav",
+    tags: ["pilot"],
+    cat: "pilot",
+    def: "Formal term for a licensed mech pilot. Rarely used in casual conversation — most pilots just say <em>pilot</em> or <em>cav</em>. Appears in official Coalition paperwork and legal documents.",
+  },
+
+  // ── B ──
+  {
+    term: "Brace",
+    tags: ["combat"],
+    cat: "combat",
+    def: "To brace is to take a defensive reaction, sacrificing offensive capability to weather an incoming hit. <strong>Mechanically:</strong> reduces damage from one attack but limits your next turn. Colloquially used to mean holding position under fire.",
+    example: '"We\'re taking too much heat — brace up and wait for an opening."'
+  },
+  {
+    term: "Burn",
+    tags: ["combat"],
+    cat: "combat",
+    def: "A damage type that bypasses Armor and continues dealing damage each turn unless treated. Distinct from Heat. Sources include incendiary weapons and certain NHP-derived systems. Getting burned out in the field with no patch nearby is a bad situation.",
+  },
+
+  // ── C ──
+  {
+    term: "Cascade",
+    alt: "also: Going Cascade, Cascading",
+    tags: ["tech", "lore"],
+    cat: "lore",
+    def: "When an NHP (Non-Human Person) suffers catastrophic system failure and loses coherent identity, it enters cascade — an uncontrolled, self-evolving state. A cascading NHP takes over the mech entirely and becomes unpredictable, hostile, and potentially terrifying. The only immediate fix is <strong>Shut Down</strong>.",
+    example: '"The Goblin\'s NHP went cascade mid-fight. GM now controls the mech. Everyone else\'s problem."'
+  },
+  {
+    term: "Cav",
+    alt: "also: Mechcav, Heavycav, Lightcav",
+    tags: ["mech", "slang"],
+    cat: "mech",
+    def: "Short for <em>mechanized cavalry</em>. The most common informal term for mechs and mech pilots. Heavycav refers to large, heavily armored frames; lightcav to fast, lightly armored ones. The cavalry analogy runs deep in pilot culture — mounting, dismounting, lances, and so on.",
+  },
+  {
+    term: "COMP/CON",
+    alt: "pronounced: comp-con",
+    tags: ["tech", "lore"],
+    cat: "tech",
+    def: "The standard mech operating system and pilot companion AI. Less sophisticated than a full NHP — COMP/CON is a narrow AI, not a person. It handles system integration, targeting assistance, diagnostics, and mission data. Most pilots develop genuine attachment to their COMP/CON over time.",
+    example: '"My COMP/CON flagged the sensor anomaly before I even noticed it. Good machine."'
+  },
+
+  // ── D ──
+  {
+    term: "Danger Zone",
+    tags: ["combat", "mech"],
+    cat: "combat",
+    def: "When a mech has accumulated Heat equal to or exceeding half its Heat Cap, it enters the Danger Zone. Certain weapons and systems deal extra damage or trigger special effects against mechs in this state. A sign that a fight is going badly — or that an Overcharge-heavy pilot is playing a risky game.",
+  },
+  {
+    term: "Disengage",
+    tags: ["combat"],
+    cat: "combat",
+    def: "A Full Action that allows a mech to move away from an engaged enemy without triggering Overwatch. The tactical equivalent of creating a clean exit — costs your whole action, but you leave without eating a reaction attack.",
+  },
+
+  // ── E ──
+  {
+    term: "Engaged",
+    tags: ["combat"],
+    cat: "combat",
+    def: "When two mechs are adjacent, they are considered Engaged. Ranged attacks made while Engaged suffer +1 Difficulty. Moving away from an Engaged enemy triggers Overwatch unless you Disengage first.",
+  },
+  {
+    term: "Eyes, The",
+    alt: "also: Seeing with the Eyes",
+    tags: ["slang", "lore"],
+    cat: "slang",
+    def: "A colloquialism with unclear origins, referring to some form of heightened perceptual or technological awareness — possibly related to HORUS philosophies about expanded consciousness, or simply pilot slang for having perfect situational awareness. <em>\"You seeing with the Eyes?\"</em> is used to ask whether someone is paying close attention, or whether they're picking up on something others aren't.",
+    example: '"You seeing with the Eyes? Something\'s wrong with this contract."'
+  },
+
+  // ── F ──
+  {
+    term: "Fireworks",
+    tags: ["slang", "combat"],
+    cat: "slang",
+    def: "Pilot slang for explosive weapons — launchers, grenade systems, anything that makes a satisfying blast radius. Used affectionately.",
+    example: '"Bring the fireworks. We\'re clearing that corridor."'
+  },
+  {
+    term: "Frame",
+    alt: "also: Hull",
+    tags: ["mech"],
+    cat: "mech",
+    def: "The specific chassis of a mech — its base design, manufacturer, and mechanical architecture. A pilot's Frame determines their core stats, trait set, and Core System. Distinct from the loadout of weapons and systems installed on it.",
+  },
+  {
+    term: "Full Repair",
+    tags: ["combat", "mech"],
+    cat: "combat",
+    def: "A full reset requiring ~10 hours of downtime. Restores all HP, Structure, Stress, Repairs, and Limited uses. Resets Overcharge. The standard recovery between missions. Distinguished from a simple Rest, which is faster but more limited.",
+  },
+
+  // ── G ──
+  {
+    term: "GRIT",
+    tags: ["pilot", "lore"],
+    cat: "pilot",
+    def: "A pilot's combat experience rating, equal to half their License Level (rounded down). Used as the stat bonus for most pilot-scale attacks and saves when out of their mech. A measure of hard-earned competence.",
+  },
+
+  // ── H ──
+  {
+    term: "Harrison Armory",
+    alt: "abbr: HA",
+    tags: ["faction"],
+    cat: "faction",
+    def: "One of the five major mech manufacturers. Produces reliable, heavily-armed frames favored by military and paramilitary forces. HA mechs tend toward durability, firepower, and straightforward lethality. Their designs are robust enough to operate far from supply chains — a major reason for their presence in the Outer Bands.",
+  },
+  {
+    term: "HASE",
+    alt: "pronounced: haze",
+    tags: ["mech", "pilot"],
+    cat: "mech",
+    def: "The four core mech stat categories: <strong>H</strong>ull, <strong>A</strong>gility, <strong>S</strong>ystems, <strong>E</strong>ngineering. Each governs different aspects of mech performance. Hull = durability and physical strength. Agility = speed and evasion. Systems = electronics and tech. Engineering = heat management and energy weapons.",
+  },
+  {
+    term: "Heat",
+    tags: ["mech", "combat"],
+    cat: "combat",
+    def: "A resource tracking thermal buildup in a mech's reactor and systems. Caused by firing certain weapons, Overcharging, and enemy tech attacks. When Heat reaches the Heat Cap, the mech becomes Exposed. A second hit while Exposed triggers a Stress check. Managing Heat is a core part of mech piloting.",
+  },
+  {
+    term: "HORUS",
+    tags: ["faction"],
+    cat: "faction",
+    def: "The most opaque of the five mech manufacturers — less a corporation than a distributed, semi-anonymous collective. HORUS frames and systems push the boundaries of causality and conventional technology. Nobody is entirely sure how HORUS operates, who runs it, or what it ultimately wants. Their products work. That's usually enough.",
+  },
+
+  // ── I ──
+  {
+    term: "IPS-N",
+    alt: "Ironwind, Precipitation, Smith-Nanling",
+    tags: ["faction"],
+    cat: "faction",
+    def: "One of the five major mech manufacturers. Specializes in industrial-grade frames built for endurance and raw physical capability — the workhorses of the mech world. IPS-N designs are often found repurposed from civilian or industrial origins, and their pilots tend toward the practical over the elegant.",
+  },
+
+  // ── J ──
+  {
+    term: "Jammed",
+    tags: ["combat"],
+    cat: "combat",
+    def: "A condition representing severe electronic interference. A Jammed mech cannot communicate, make tech attacks, or benefit from allied tech actions. Only Improvised Attacks, Grapple, and Ram remain available as attack options. The mech is, effectively, cut off.",
+  },
+  {
+    term: "Jockey",
+    alt: "also: Jockeying",
+    tags: ["combat", "pilot"],
+    cat: "combat",
+    def: "When a dismounted pilot physically climbs onto a hostile mech and starts causing problems from the outside. A Full Action — make a contested Grit vs. Hull check, then choose to Impair/Slow the mech, deal Heat, or deal direct damage. Extremely risky. Extremely effective against the right target.",
+    example: '"I\'m going to jockey the Atlas." "You\'re going to die." "Probably."'
+  },
+
+  // ── L ──
+  {
+    term: "Lancer",
+    tags: ["pilot", "lore"],
+    cat: "pilot",
+    def: "An informal, peer-recognized term for a pilot who has demonstrated exceptional skill, reliability, or judgment — not a formal rank. The word carries genuine weight; being called a Lancer by other pilots means something. The Lancer Licensing Board uses the term formally, but the unofficial usage predates the institution.",
+    example: '"She\'s not just certified. She\'s a Lancer. Different thing."'
+  },
+  {
+    term: "License Level",
+    alt: "abbr: LL",
+    tags: ["pilot", "mech"],
+    cat: "pilot",
+    def: "A measure of a pilot's experience and gear access, from LL0 (freshly certified) upward. Higher LL unlocks more advanced frame options and systems. Pilots in Coalition Space start at LL0 — certified, capable, and with a lot left to prove.",
+  },
+  {
+    term: "Limited",
+    tags: ["mech", "combat"],
+    cat: "mech",
+    def: "A weapon or system tag indicating it has a fixed number of uses before it's expended. Full Repair restores all Limited uses. Reserves can sometimes grant extra charges before a mission. Managing your Limited resources in a prolonged engagement is a real tactical consideration.",
+  },
+  {
+    term: "Loading",
+    tags: ["mech", "combat"],
+    cat: "mech",
+    def: "A weapon tag indicating it must be reloaded after each use. Reloading costs a Quick Action. A Loading weapon that hasn't been reloaded cannot be fired. Heavy weapons with the Loading tag are powerful but demand careful timing.",
+  },
+  {
+    term: "Lock On",
+    tags: ["combat"],
+    cat: "combat",
+    def: "A condition placed on a target by the Lock On Quick Action. Any attacker may choose to consume it for +1 Accuracy on their attack. It persists until someone uses it — there's no time limit. Good target designation for a team coordinating fire.",
+  },
+
+  // ── M ──
+  {
+    term: "Mech",
+    alt: "also: Frame, Hull, Cav",
+    tags: ["mech"],
+    cat: "mech",
+    def: "The giant piloted war machines at the center of Lancer. Mechs range from Size 1 (standard) to Size 3+ (siege-class). Each pilot owns and operates a single mech, though the frame can be changed between missions. The mech is not just equipment — most pilots develop something close to a relationship with their machine.",
+  },
+  {
+    term: "Mount / Dismount",
+    tags: ["mech", "pilot"],
+    cat: "mech",
+    def: "Entering or exiting a mech. Both are Full Actions in combat. A dismounted pilot operates at human scale — capable and dangerous in the right context, but vulnerable in a mech fight. Pilots who end up on foot in a hot zone generally want to fix that quickly.",
+  },
+  {
+    term: "Meltdown",
+    alt: "also: Going Critical, Reactor Meltdown",
+    tags: ["mech", "combat"],
+    cat: "combat",
+    def: "When a mech's reactor goes critical. The mech will explode at the end of the pilot's next turn in a Blast 2 area for 4d6 damage — unless the pilot Shuts Down first. The explosion is indiscriminate. Friendly mechs nearby should move.",
+    example: '"Meltdown imminent. Clearing the area. If you\'re still adjacent in thirty seconds, that\'s on you."'
+  },
+
+  // ── N ──
+  {
+    term: "NHP",
+    alt: "Non-Human Person",
+    tags: ["tech", "lore"],
+    cat: "tech",
+    def: "A legally recognized non-human intelligence — an artificial consciousness sophisticated enough to be considered a person under Union law. NHPs are not simple AIs; they are genuinely alien intelligences, often unstable by human standards. They are casked (containerized) to maintain coherence. An NHP installed in a mech is a powerful but volatile co-pilot.",
+  },
+
+  // ── O ──
+  {
+    term: "Omninet",
+    tags: ["lore"],
+    cat: "lore",
+    def: "The galaxy-wide communications and information network — the future's internet. Omninet access varies dramatically by location; the deep Outer Bands have limited, high-latency Omninet connections at best. Union Relay Epsilon exists partly to maintain a thread of Omninet access for Coalition Space.",
+  },
+  {
+    term: "Overcharge",
+    tags: ["mech", "combat"],
+    cat: "combat",
+    def: "A pilot technique for squeezing extra performance out of a mech's systems. Costs Heat — and the Heat cost escalates each time it's used (1 → 1d3 → 1d6 → 1d6+4). Resets on Full Repair only, not between fights. A pilot who Overcharges recklessly into the late mission may find themselves with a meltdown problem.",
+  },
+  {
+    term: "Overwatch",
+    tags: ["combat"],
+    cat: "combat",
+    def: "A readied state allowing a mech to strike at enemies who move within its Threat range. Triggered as a reaction. A mech on Overwatch controls the space around it — enemies have to respect it or eat a free attack.",
+  },
+
+  // ── P ──
+  {
+    term: "Paracausality",
+    alt: "also: Paracausal",
+    tags: ["tech", "lore"],
+    cat: "tech",
+    def: "The in-universe term for technology — often associated with HORUS — that appears to violate or bend normal causality. Paracausal effects don't follow standard physics. Whether this represents genuine rule-breaking or simply technology so advanced it appears that way is a question most people prefer not to examine too closely.",
+  },
+  {
+    term: "Patch",
+    alt: "also: Stim, Quick Patch",
+    tags: ["slang", "pilot"],
+    cat: "slang",
+    def: "A healing item for the pilot (not the mech). Patches restore pilot HP and are consumed on use. Also used colloquially for any quick field repair. <em>\"I'm patching up\"</em> can mean either treating a pilot wound or doing hasty mech maintenance.",
+  },
+
+  // ── R ──
+  {
+    term: "Repairs",
+    tags: ["mech"],
+    cat: "mech",
+    def: "A tracked resource representing a mech's field repair capacity — spare parts, emergency seals, coolant reserves. Spent during Rest to restore HP, fix systems, or recover Structure and Stress. A mech that burns through its Repair Cap before the mission ends has a problem.",
+  },
+  {
+    term: "Resistance",
+    tags: ["combat", "mech"],
+    cat: "combat",
+    def: "Reduces all incoming damage of a specific type or from a specific source by half. Resistance applies after Armor. <strong>Shredded</strong> removes both Armor and Resistance entirely.",
+  },
+
+  // ── S ──
+  {
+    term: "Scan",
+    tags: ["combat"],
+    cat: "combat",
+    def: "A Quick Tech action allowing a pilot to pull detailed information about a target within Sensors and line of sight. The GM reveals full statistics, one piece of hidden information, or a piece of general intel. Information is current at time of scan only.",
+  },
+  {
+    term: "Sliggy / Sliggies",
+    alt: "also: Sluggers",
+    tags: ["slang", "combat"],
+    cat: "slang",
+    def: "Pilot slang for kinetic ranged weapons — rifles, cannons, mass drivers, anything that throws physical projectiles. Origin uncertain; possibly a corruption of <em>slug-thrower</em>. Used affectionately by pilots who prefer the reliable simplicity of something that doesn't need a power cell.",
+    example: '"Take the sliggies. Zappers overheat in this environment."'
+  },
+  {
+    term: "SSC",
+    alt: "Smith-Shimano Corpro",
+    tags: ["faction"],
+    cat: "faction",
+    def: "One of the five major mech manufacturers. Known for agile, sleek, high-performance frames with exceptional sensor suites and movement capabilities. SSC designs are popular with independent operators and scouts. Their products are expensive. They are worth it.",
+  },
+  {
+    term: "Stress",
+    alt: "also: Reactor Stress",
+    tags: ["mech", "combat"],
+    cat: "mech",
+    def: "A damage track for a mech's reactor and power systems. Accumulated when Heat overflows. Each Stress hit triggers a Stress check — and the worse your remaining Stress, the worse the possible outcomes. At 4 Stress, the mech is destroyed. Costs 2 Repairs per point to recover during Rest.",
+  },
+  {
+    term: "Structure",
+    alt: "also: Structural Damage",
+    tags: ["mech", "combat"],
+    cat: "mech",
+    def: "A damage track representing critical physical damage to the mech's frame. Accumulated when HP hits 0. Each hit triggers a Structure check. At 4 Structure damage, the mech is destroyed. Requires 2 Repairs per point to recover during Rest.",
+  },
+
+  // ── T ──
+  {
+    term: "Threat",
+    tags: ["mech", "combat"],
+    cat: "combat",
+    def: "The reach of a melee or CQB weapon — how far away a target can be and still be struck. A weapon with Threat 2 can hit anything within 2 spaces. Relevant for Overwatch (which triggers on movement within Threat) and melee targeting.",
+  },
+
+  // ── U ──
+  {
+    term: "Union",
+    tags: ["faction", "lore"],
+    cat: "faction",
+    def: "The governing body of the human diaspora — a vast, slow-moving but generally benevolent civilization spanning thousands of systems. Union's authority in Coalition Space is nominal; their nearest relay is weeks away. They care about what happens out here. They just can't always show up in time to matter.",
+  },
+
+  // ── W ──
+  {
+    term: "Wall",
+    alt: "also: Anthros, Anchovies",
+    tags: ["slang", "lore"],
+    cat: "slang",
+    def: '<strong>Anthros</strong> (short for Anthrochauvinists) are individuals who believe baseline humans are superior to NHPs, augmented humans, or non-human persons. <em>Anchovies</em> is the contemptuous slang. Antrochauvinist sentiment exists in Coalition Space, particularly in isolated communities with limited exposure to the broader Union. Generally considered backward by most pilots.',
+  },
+
+  // ── Z ──
+  {
+    term: "Zappers",
+    tags: ["slang", "combat"],
+    cat: "slang",
+    def: "Pilot slang for energy weapons — lasers, particle cannons, plasma emitters. Favored for their Armor-bypassing potential. The downside: they generate Heat. The upside: no ammo to run out of.",
+    example: '"Their Armor is too thick for the sliggies. Switch to zappers."'
+  },
+
+];
+
+// Build alpha index
+function getFirstLetter(term) {
+  return term[0].toUpperCase();
+}
+
+function buildGlossary(filter) {
+  const body = document.getElementById('glossary-body');
+  // Group by letter
+  const grouped = {};
+  entries.forEach(e => {
+    const l = getFirstLetter(e.term);
+    if (!grouped[l]) grouped[l] = [];
+    grouped[l].push(e);
+  });
+
+  const letters = Object.keys(grouped).sort();
+  body.innerHTML = '';
+
+  // Build filter bar letters
+  const bar = document.getElementById('filter-bar');
+  // Only build once
+  if (bar.querySelectorAll('.letter-btn').length === 0) {
+    letters.forEach(l => {
+      const btn = document.createElement('button');
+      btn.className = 'filter-btn letter-btn';
+      btn.textContent = l;
+      btn.onclick = () => filterSection(l);
+      bar.appendChild(btn);
+    });
+  }
+
+  letters.forEach(letter => {
+    const section = document.createElement('div');
+    section.className = 'alpha-section';
+    section.dataset.letter = letter;
+
+    const heading = document.createElement('div');
+    heading.className = 'alpha-heading';
+    heading.textContent = letter;
+    section.appendChild(heading);
+
+    const grid = document.createElement('div');
+    grid.className = 'entry-grid';
+
+    grouped[letter].forEach(e => {
+      const card = document.createElement('div');
+      card.className = `entry cat-${e.cat}`;
+
+      let html = `<div class="entry-term">${e.term}</div>`;
+      if (e.alt) html += `<div class="entry-alt">${e.alt}</div>`;
+      // Tags
+      html += '<div>';
+      e.tags.forEach(t => {
+        html += `<span class="entry-tag tag-${t}">${t}</span>`;
+      });
+      html += '</div>';
+      html += `<div class="entry-def">${e.def}</div>`;
+      if (e.example) html += `<div class="entry-example">${e.example}</div>`;
+
+      card.innerHTML = html;
+      grid.appendChild(card);
+    });
+
+    section.appendChild(grid);
+    body.appendChild(section);
+  });
+}
+
+function filterSection(letter) {
+  // Update button states
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  if (letter === 'all') {
+    document.querySelector('.all-btn').classList.add('active');
+  } else {
+    document.querySelectorAll('.letter-btn').forEach(b => {
+      if (b.textContent === letter) b.classList.add('active');
+    });
+  }
+
+  // Show/hide sections
+  document.querySelectorAll('.alpha-section').forEach(s => {
+    if (letter === 'all' || s.dataset.letter === letter) {
+      s.classList.remove('hidden');
+    } else {
+      s.classList.add('hidden');
+    }
+  });
+}
+
+// Init
+buildGlossary('all');
+</script>
+
+</body>
+</html>
