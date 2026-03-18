@@ -334,6 +334,13 @@ const entries = [
     cat: "pilot",
     def: "Formal term for a licensed mech pilot. Rarely used in casual conversation — most pilots just say <em>pilot</em> or <em>cav</em>. Appears in official Coalition paperwork and legal documents.",
   },
+  {
+    term: "Anthros / Anchovies",
+    alt: "short for: Anthrochauvinists",
+    tags: ["slang", "lore"],
+    cat: "slang",
+    def: "Slang terms for Anthrochauvinists — individuals who believe baseline humans are superior to NHPs, augmented persons, or other non-human intelligences. <em>Anthros</em> is the neutral shorthand; <em>Anchovies</em> is contemptuous. Antrochauvinist sentiment exists in Coalition Space, particularly in isolated communities. Generally considered backward by most pilots.",
+  },
 
   // ── B ──
   {
@@ -347,7 +354,7 @@ const entries = [
     term: "Burn",
     tags: ["combat"],
     cat: "combat",
-    def: "A damage type that bypasses Armor and continues dealing damage each turn unless treated. Distinct from Heat. Sources include incendiary weapons and certain NHP-derived systems. Getting burned out in the field with no patch nearby is a bad situation.",
+    def: "A damage type that bypasses Armor. At the end of each of the target's turns, they make an Engineering check — on a failure, they take the Burn damage again. Success clears all Burn. Multiple sources of Burn stack but resolve with a single roll. Distinct from Heat. Getting Burned in the field with no way to clear it is a serious problem.",
   },
 
   // ── C ──
@@ -454,7 +461,7 @@ const entries = [
     term: "Heat",
     tags: ["mech", "combat"],
     cat: "combat",
-    def: "A resource tracking thermal buildup in a mech's reactor and systems. Caused by firing certain weapons, Overcharging, and enemy tech attacks. When Heat reaches the Heat Cap, the mech becomes Exposed. A second hit while Exposed triggers a Stress check. Managing Heat is a core part of mech piloting.",
+    def: "A resource tracking thermal buildup in a mech's reactor and systems. Caused by firing certain weapons, Overcharging, and enemy tech attacks. When Heat reaches the Heat Cap, the mech immediately gains <strong>Exposed</strong> and rolls a <strong>Stress check</strong> — both happen together. Taking additional Heat while already Exposed triggers another Stress check. Managing Heat is a core part of mech piloting.",
   },
   {
     term: "HORUS",
@@ -466,7 +473,7 @@ const entries = [
   // ── I ──
   {
     term: "IPS-N",
-    alt: "Ironwind, Precipitation, Smith-Nanling",
+    alt: "abbr: IPS-N — manufacturing conglomerate",
     tags: ["faction"],
     cat: "faction",
     def: "One of the five major mech manufacturers. Specializes in industrial-grade frames built for endurance and raw physical capability — the workhorses of the mech world. IPS-N designs are often found repurposed from civilian or industrial origins, and their pilots tend toward the practical over the elegant.",
@@ -659,11 +666,12 @@ const entries = [
 
   // ── W ──
   {
-    term: "Wall",
-    alt: "also: Anthros, Anchovies",
-    tags: ["slang", "lore"],
+    term: "Walling",
+    alt: "also: Going Wall, Walled Out",
+    tags: ["slang", "combat"],
     cat: "slang",
-    def: '<strong>Anthros</strong> (short for Anthrochauvinists) are individuals who believe baseline humans are superior to NHPs, augmented humans, or non-human persons. <em>Anchovies</em> is the contemptuous slang. Antrochauvinist sentiment exists in Coalition Space, particularly in isolated communities with limited exposure to the broader Union. Generally considered backward by most pilots.',
+    def: "Pilot slang for being completely cut off — tactically isolated, communication jammed, or trapped in a position with no good exit. <em>"We got walled out"</em> means the situation closed around you faster than you could respond. Also used more casually for any scenario where options have run out.",
+    example: '"Three contacts between us and the extraction point. We're walled. Ideas?"',
   },
 
   // ── Z ──
@@ -671,7 +679,7 @@ const entries = [
     term: "Zappers",
     tags: ["slang", "combat"],
     cat: "slang",
-    def: "Pilot slang for energy weapons — lasers, particle cannons, plasma emitters. Favored for their Armor-bypassing potential. The downside: they generate Heat. The upside: no ammo to run out of.",
+    def: "Pilot slang for energy weapons — lasers, particle cannons, plasma emitters. Consistent output, no ammo to run out of, and effective against most targets. The downside: they generate Heat, and Armor still applies. Save the AP gear for armored targets.",
     example: '"Their Armor is too thick for the sliggies. Switch to zappers."'
   },
 
