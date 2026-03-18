@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coalition Space — Combat Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --coal:         #0d0f12;
+  --ink:          #141820;
+  --panel:        #1a1f2a;
+  --panel2:       #1e2535;
+  --border:       #2a3245;
+  --border2:      #3d5070;
+  --text:         #c8d0dc;
+  --dim:          #7a8899;
+  --bright:       #e8edf5;
+  --accent:       #e8a020;
+  --accent-dim:   #a06810;
+  --accent-hi:    #ffcc55;
+  --red:          #c03030;
+  --red-dim:      #601010;
+  --green:        #3a8a5a;
+  --green-dim:    #1a3a28;
+  --blue:         #2a6aaa;
+  --blue-bright:  #4a9adf;
+  --blue-dim:     #0a2a4a;
+  --orange:       #d06820;
+  --scan: rgba(255,255,255,0.015);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--coal);
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 1.6;
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, var(--scan) 2px, var(--scan) 4px);
+}
+
+/* ── LAYOUT ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 32px 24px 80px; }
+
+/* ── HEADER ── */
+.doc-header {
+  border-top: 3px solid var(--accent);
+  padding-top: 24px;
+  margin-bottom: 36px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.header-left {}
+.doc-meta {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px;
+  color: var(--accent-dim);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.doc-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: var(--bright);
+}
+.doc-title span { color: var(--accent); }
+.doc-subtitle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+.scroll-btn {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 4px 9px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.12s, border-color 0.12s, background 0.12s;
+  -webkit-tap-highlight-color: transparent;
+}
+.scroll-btn:hover, .scroll-btn:active {
+  color: var(--accent-hi);
+  border-color: var(--accent-dim);
+  background: var(--ink);
+}
+@keyframes card-flash {
+  0%   { outline: 2px solid var(--accent); outline-offset: 0px; }
+  60%  { outline: 2px solid var(--accent); outline-offset: 2px; }
+  100% { outline: 2px solid transparent; outline-offset: 2px; }
+}
+.card-highlight {
+  animation: card-flash 0.9s ease-out forwards;
+}
+.nav-link {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--coal);
+  background: var(--accent);
+  padding: 7px 14px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.15s;
+  align-self: flex-start;
+  margin-top: 8px;
+}
+.nav-link:hover { background: var(--accent-hi); }
+
+/* ── SECTION LABELS ── */
+.section-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px;
+  color: var(--coal);
+  background: var(--accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.section-label.blue  { background: var(--blue);  color: #fff; }
+.section-label.red   { background: var(--red);   color: #fff; }
+.section-label.green { background: var(--green); color: #fff; }
+.section-label.dim   { background: var(--border2); color: var(--bright); }
+
+/* ── GRID LAYOUT ── */
+.ref-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+.col-4  { grid-column: span 4; }
+.col-3  { grid-column: span 3; }
+.col-6  { grid-column: span 6; }
+.col-5  { grid-column: span 5; }
+.col-7  { grid-column: span 7; }
+.col-8  { grid-column: span 8; }
+.col-12 { grid-column: span 12; }
+
+/* ── CARD ── */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 14px 16px;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+}
+.card.accent::before  { background: var(--accent); }
+.card.blue::before    { background: var(--blue-bright); }
+.card.red::before     { background: var(--red); }
+.card.green::before   { background: var(--green); }
+.card.orange::before  { background: var(--orange); }
+.card.dim::before     { background: var(--border2); }
+
+.card-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--bright);
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── TURN STRUCTURE ── */
+.turn-phases {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.phase-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 7px 10px;
+  background: var(--ink);
+  border-left: 3px solid var(--border2);
+}
+.phase-row.accent { border-left-color: var(--accent); }
+.phase-row.blue   { border-left-color: var(--blue-bright); }
+.phase-row.red    { border-left-color: var(--red); }
+.phase-row.green  { border-left-color: var(--green); }
+.phase-row.dim    { border-left-color: var(--border2); }
+.phase-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bright);
+  white-space: nowrap;
+  min-width: 90px;
+  flex-shrink: 0;
+}
+.phase-desc {
+  font-size: 11px;
+  color: var(--text);
+  line-height: 1.4;
+}
+.phase-desc em { color: var(--accent-hi); font-style: normal; }
+
+/* ── ACTION LISTS ── */
+.action-list { display: flex; flex-direction: column; gap: 5px; }
+.action-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 5px 8px;
+  border-left: 2px solid var(--border);
+}
+.action-item.full   { border-left-color: var(--accent); }
+.action-item.quick  { border-left-color: var(--blue-bright); }
+.action-item.react  { border-left-color: var(--green); }
+.action-item.free   { border-left-color: var(--border2); }
+.action-type-pip {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 7px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 1px 5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.pip-full  { background: var(--accent-dim); color: var(--accent-hi); }
+.pip-quick { background: var(--blue-dim);   color: var(--blue-bright); }
+.pip-react { background: var(--green-dim);  color: var(--green); }
+.pip-free  { background: var(--border);     color: var(--dim); }
+.action-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--bright);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.action-note {
+  font-size: 11px;
+  color: var(--dim);
+  line-height: 1.35;
+}
+.action-note em { color: var(--text); font-style: normal; }
+
+/* ── ATTACK FLOW ── */
+.flow-steps { display: flex; flex-direction: column; gap: 4px; }
+.flow-step {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 7px 10px;
+  background: var(--ink);
+}
+.flow-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  color: var(--accent);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 18px;
+  text-align: center;
+}
+.flow-content {}
+.flow-head {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bright);
+  margin-bottom: 2px;
+}
+.flow-body {
+  font-size: 11px;
+  color: var(--text);
+  line-height: 1.45;
+}
+.flow-body em { color: var(--accent-hi); font-style: normal; }
+.flow-body strong { color: var(--bright); font-weight: 600; }
+
+/* ── CONDITIONS TABLE ── */
+.conditions-list { display: flex; flex-direction: column; gap: 4px; }
+.condition-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 8px;
+  align-items: baseline;
+  padding: 5px 8px;
+  border-left: 2px solid var(--border);
+}
+.condition-row:nth-child(odd) { background: rgba(255,255,255,0.015); }
+.cond-name {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-hi);
+  white-space: nowrap;
+}
+.cond-name.red    { color: var(--red); }
+.cond-name.blue   { color: var(--blue-bright); }
+.cond-name.orange { color: var(--orange); }
+.cond-name.green  { color: var(--green); }
+.cond-effect {
+  font-size: 11px;
+  color: var(--text);
+  line-height: 1.4;
+}
+.cond-effect strong { color: var(--bright); font-weight: 600; }
+
+/* ── HEAT TRACK ── */
+.heat-track { display: flex; flex-direction: column; gap: 4px; }
+.heat-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 7px 10px;
+  border-left: 3px solid var(--border2);
+}
+.heat-row.warn { border-left-color: var(--orange); background: rgba(208,104,32,0.06); }
+.heat-row.crit { border-left-color: var(--red); background: rgba(192,48,48,0.06); }
+.heat-threshold {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  min-width: 80px;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+.heat-row.warn .heat-threshold { color: var(--orange); }
+.heat-row.crit .heat-threshold { color: var(--red); }
+.heat-threshold-val {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px;
+  color: var(--dim);
+  display: block;
+  letter-spacing: 0.08em;
+}
+.heat-desc {
+  font-size: 11px;
+  color: var(--text);
+  line-height: 1.45;
+}
+.heat-desc strong { color: var(--bright); font-weight: 600; }
+
+/* ── OVERCHARGE TABLE ── */
+.overcharge-table {
+  border: 1px solid var(--border);
+  width: 100%;
+  border-collapse: collapse;
+}
+.overcharge-table th {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 5px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  background: var(--ink);
+}
+.overcharge-table td {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.overcharge-table tr:last-child td { border-bottom: none; }
+.overcharge-table tr:nth-child(odd) td { background: rgba(255,255,255,0.015); }
+.oc-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--accent);
+}
+.oc-roll {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: var(--accent-hi);
+}
+.oc-note { font-size: 11px; color: var(--dim); }
+
+/* ── STRUCTURE / STRESS ── */
+.damage-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 8px;
+}
+.damage-table th {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 5px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  background: var(--ink);
+}
+.damage-table td {
+  font-size: 11px;
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.4;
+}
+.damage-table tr:last-child td { border-bottom: none; }
+.damage-table tr:nth-child(odd) td { background: rgba(255,255,255,0.015); }
+.dt-roll {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--red);
+  white-space: nowrap;
+}
+.dt-effect strong { font-weight: 600; color: var(--bright); }
+
+/* ── MECH DEATH NOTE ── */
+.death-note {
+  background: var(--red-dim);
+  border: 1px solid var(--red);
+  padding: 10px 12px;
+  margin-top: 8px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text);
+}
+.death-note strong { color: var(--bright); font-weight: 600; }
+
+/* ── QUICK MATH ── */
+.math-rows { display: flex; flex-direction: column; gap: 4px; }
+.math-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 6px 10px;
+  background: var(--ink);
+  border-left: 2px solid var(--border2);
+}
+.math-label { font-size: 11px; color: var(--text); line-height: 1.35; }
+.math-label strong { color: var(--bright); font-weight: 600; }
+.math-formula {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  color: var(--accent-hi);
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+}
+
+/* ── SECTION DIVIDER ── */
+.divider {
+  grid-column: span 12;
+  height: 1px;
+  background: linear-gradient(90deg, var(--border2), transparent);
+  margin: 8px 0;
+}
+
+/* ── FOOTER ── */
+.doc-footer {
+  margin-top: 48px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px;
+  color: var(--dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ── INLINE BADGE ── */
+.badge {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 1px 5px;
+  border: 1px solid currentColor;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 2px;
+}
+.badge.full  { color: var(--accent);      border-color: var(--accent-dim); }
+.badge.quick { color: var(--blue-bright); border-color: var(--blue-dim); }
+.badge.react { color: var(--green);       border-color: var(--green-dim); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1000px) {
+  .col-3 { grid-column: span 4; }
+  .col-4 { grid-column: span 6; }
+  .col-5 { grid-column: span 6; }
+  .col-7 { grid-column: span 6; }
+  .col-8 { grid-column: span 6; }
+}
+@media (max-width: 720px) {
+  .page { padding: 20px 14px 60px; }
+  .ref-grid { grid-template-columns: 1fr; gap: 10px; }
+  .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-12 { grid-column: span 1; }
+  .divider { grid-column: span 1; }
+  .doc-header { flex-direction: column; align-items: flex-start; }
+  .condition-row { grid-template-columns: 100px 1fr; }
+}
+@media (max-width: 480px) {
+  .condition-row { grid-template-columns: 1fr; gap: 2px; }
+  .condition-row .cond-name { margin-bottom: 1px; }
+  .math-row { grid-template-columns: 1fr; gap: 2px; }
+  .math-formula { font-size: 9px; color: var(--dim); }
+  .phase-name { min-width: 70px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="doc-header">
+    <div class="header-left">
+      <div class="doc-meta">Coalition Space — Field Reference &nbsp;|&nbsp; Lancer TTRPG</div>
+      <div class="doc-title">COMBAT<br><span>REFERENCE</span></div>
+      <div class="doc-subtitle">
+        <button class="scroll-btn" onclick="jumpToCard('sec-turn')">Your Turn</button>
+        <button class="scroll-btn" onclick="jumpToCard('sec-full')">Full Actions</button>
+        <button class="scroll-btn" onclick="jumpToCard('sec-quick')">Quick Actions</button>
+        <button class="scroll-btn" onclick="jumpToCard('sec-react')">Reactions</button>
+        <button class="scroll-btn" onclick="jumpToCard('sec-attack')">Making an Attack</button>
+        <button class="scroll-btn" onclick="jumpToCard('sec-acc')">Accuracy & Difficulty</button>
+        <button class="scroll-btn" onclick="jumpToCard('sec-cond')">Conditions</button>
+        <button class="scroll-btn" onclick="jumpToCard('sec-heat')">Heat & Overcharge</button>
+        <button class="scroll-btn" onclick="jumpToCard('sec-struct')">Structure Damage</button>
+        <button class="scroll-btn" onclick="jumpToCard('sec-move')">Movement & Terrain</button>
+        <button class="scroll-btn" onclick="jumpToCard('sec-skill')">Skill Checks</button>
+        <button class="scroll-btn" onclick="jumpToCard('sec-repair')">Repair & Rest</button>
+        <button class="scroll-btn" onclick="jumpToCard('sec-tips')">Things to Remember</button>
+      </div>
+    </div>
+    <a href="index.html" class="nav-link">← Back to Hub</a>
+  </header>
+
+  <div class="ref-grid">
+
+    <!-- ══ TURN STRUCTURE ══ -->
+    <div class="card accent col-4" id="sec-turn">
+      <div class="card-title">Your Turn</div>
+      <div class="turn-phases">
+        <div class="phase-row accent">
+          <div class="phase-name">Move</div>
+          <div class="phase-desc">Move up to your <em>Speed</em> in spaces. Split before/after actions.</div>
+        </div>
+        <div class="phase-row accent">
+          <div class="phase-name">Actions</div>
+          <div class="phase-desc">Take <em>1 Full Action</em> or <em>2 Quick Actions</em>. Not both.</div>
+        </div>
+        <div class="phase-row green">
+          <div class="phase-name">Reaction</div>
+          <div class="phase-desc"><em>1 per round</em>, triggered by specific conditions. Resets at your turn.</div>
+        </div>
+        <div class="phase-row dim">
+          <div class="phase-name">Free Actions</div>
+          <div class="phase-desc">Talk, drop items, activate toggles. GM discretion on quantity.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ FULL ACTIONS ══ -->
+    <div class="card accent col-4" id="sec-full">
+      <div class="card-title">Full Actions <span style="font-size:10px;color:var(--dim);font-weight:300;text-transform:none;letter-spacing:0">&nbsp;— uses your entire action</span></div>
+      <div class="action-list">
+        <div class="action-item full">
+          <div class="action-name">Barrage</div>
+          <div class="action-note">Attack with <em>2 weapons</em>, or once with a Superheavy. Each mount that fires may also fire an Aux weapon on the same mount — that Aux weapon deals no bonus damage.</div>
+        </div>
+        <div class="action-item full">
+          <div class="action-name">Stabilize</div>
+          <div class="action-note">Choose one: <em>cool all Heat</em>, or <em>spend 1 Repair to restore HP</em>. Also clears Exposed, Jammed, or 1 condition.</div>
+        </div>
+        <div class="action-item full">
+          <div class="action-name">Full Tech</div>
+          <div class="action-note">Either use a system or protocol tagged Full Tech, <em>or</em> choose two Quick Tech options (the same option may be chosen twice).</div>
+        </div>
+        <div class="action-item full">
+          <div class="action-name">Prepare</div>
+          <div class="action-note">Declare a Quick Action. Trigger it as a reaction when a condition you name occurs.</div>
+        </div>
+        <div class="action-item full">
+          <div class="action-name">Boot Up</div>
+          <div class="action-note">Restart a Shut Down mech. Takes the full action.</div>
+        </div>
+        <div class="action-item full">
+          <div class="action-name">Shut Down</div>
+          <div class="action-note">Power off voluntarily. Clears all Heat. Mech is helpless until booted.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ QUICK ACTIONS ══ -->
+    <div class="card blue col-4" id="sec-quick">
+      <div class="card-title">Quick Actions <span style="font-size:10px;color:var(--dim);font-weight:300;text-transform:none;letter-spacing:0">&nbsp;— 2 per turn</span></div>
+      <div class="action-list">
+        <div class="action-item quick">
+          <div class="action-name">Skirmish</div>
+          <div class="action-note">Attack with <em>1 weapon</em>. You may also fire a different Aux weapon on the same mount — that Aux weapon deals no bonus damage. Superheavy weapons cannot be used in a Skirmish.</div>
+        </div>
+        <div class="action-item quick">
+          <div class="action-name">Boost</div>
+          <div class="action-note">Move again up to your Speed.</div>
+        </div>
+        <div class="action-item quick">
+          <div class="action-name">Lock On</div>
+          <div class="action-note">Target gets the <em>Lock On</em> condition. It persists until consumed — <em>any</em> attacker may choose to consume it on their attack for <strong>+1 Accuracy</strong>. Once consumed, the condition ends.</div>
+        </div>
+        <div class="action-item quick">
+          <div class="action-name">Scan</div>
+          <div class="action-note">Target must be within <em>Sensors and line of sight</em>. GM reveals one of: full statistics, one piece of hidden information, or one piece of general information about the target.</div>
+        </div>
+        <div class="action-item quick">
+          <div class="action-name">Hide</div>
+          <div class="action-note">Requires cover or concealment. Become <em>Hidden</em> — position unknown until you attack or move into the open.</div>
+        </div>
+        <div class="action-item quick">
+          <div class="action-name">Quick Tech</div>
+          <div class="action-note">Use a system or protocol tagged Quick Tech.</div>
+        </div>
+        <div class="action-item quick">
+          <div class="action-name">Reload</div>
+          <div class="action-note">Reload a weapon with the <em>Loading</em> tag.</div>
+        </div>
+        <div class="action-item quick">
+          <div class="action-name">Overcharge</div>
+          <div class="action-note">Gain a free Quick Action. Take Heat (see Overcharge table). Once per turn.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ REACTIONS ══ -->
+    <div class="card green col-3" id="sec-react">
+      <div class="card-title">Reactions <span style="font-size:10px;color:var(--dim);font-weight:300;text-transform:none;letter-spacing:0">&nbsp;— 1 per round</span></div>
+      <div class="action-list">
+        <div class="action-item react">
+          <div class="action-name">Brace</div>
+          <div class="action-note">When hit: gain <em>Resistance</em> to all damage from that attack (other effects still apply). All other attacks against you gain <strong>+1 Difficulty</strong> until your next turn. Then: can only take 1 Quick Action on your next turn, no other actions, no reactions.</div>
+        </div>
+        <div class="action-item react">
+          <div class="action-name">Overwatch</div>
+          <div class="action-note">Trigger: a hostile character starts any movement within one of your weapons' Threat range. Immediately make a Skirmish against them before they move.</div>
+        </div>
+        <div class="action-item react">
+          <div class="action-name">Systems</div>
+          <div class="action-note">Some weapons and systems grant additional reactions. Check your mech sheet.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ ATTACK FLOW ══ -->
+    <div class="card accent col-5" id="sec-attack">
+      <div class="card-title">Making an Attack</div>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <div class="flow-content">
+            <div class="flow-head">Declare &amp; Check Range</div>
+            <div class="flow-body">Target must be within weapon Range. For melee/CQB weapons, within <em>Threat</em>. Line of sight required unless noted.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <div class="flow-content">
+            <div class="flow-head">Roll to Hit</div>
+            <div class="flow-body">
+              <strong>Ranged / Melee:</strong> 1d20 + relevant stat vs. target <em>Evasion</em><br>
+              <strong>Tech attack:</strong> 1d20 + Tech Attack vs. target <em>E-Defense</em><br>
+              <strong>Accuracy:</strong> Roll extra d6, <em>add</em> highest result to d20<br>
+              <strong>Difficulty:</strong> Roll extra d6, <em>subtract</em> highest result from d20
+            </div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <div class="flow-content">
+            <div class="flow-head">Determine Result</div>
+            <div class="flow-body">
+              <strong>Miss:</strong> No effect (some weapons have miss effects)<br>
+              <strong>Hit:</strong> Roll damage, subtract target's <em>Armor</em><br>
+              <strong>Critical (20+):</strong> Roll damage dice twice, take higher result — <em>then</em> add bonuses
+            </div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <div class="flow-content">
+            <div class="flow-head">Apply Damage &amp; Effects</div>
+            <div class="flow-body">Damage reduces target HP. Armor reduces kinetic/energy/explosive damage only — <em>not</em> burn or tech. Apply any bonus effects from the weapon.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ ACCURACY & DIFFICULTY ══ -->
+    <div class="card dim col-4" id="sec-acc">
+      <div class="card-title">Accuracy &amp; Difficulty</div>
+      <div class="math-rows">
+        <div class="math-row">
+          <div class="math-label"><strong>+1 Accuracy</strong> — roll 1 extra d6, add the result to your d20 roll.</div>
+          <div class="math-formula">d20 + d6</div>
+        </div>
+        <div class="math-row">
+          <div class="math-label"><strong>+1 Difficulty</strong> — roll 1 extra d6, subtract the result from your d20 roll.</div>
+          <div class="math-formula">d20 − d6</div>
+        </div>
+        <div class="math-row">
+          <div class="math-label"><strong>Multiple</strong> Accuracy and Difficulty cancel each other out 1-for-1 before rolling.</div>
+          <div class="math-formula">net = Acc − Diff</div>
+        </div>
+        <div class="math-row">
+          <div class="math-label"><strong>Lock On</strong> consumed on the attack grants +1 Accuracy to that attack.</div>
+          <div class="math-formula">+1 Acc</div>
+        </div>
+        <div class="math-row">
+          <div class="math-label"><strong>Soft Cover</strong> — obscured or partially obstructed. <strong>+1 Difficulty</strong> to ranged attacks.</div>
+          <div class="math-formula">+1 Diff</div>
+        </div>
+        <div class="math-row">
+          <div class="math-label"><strong>Hard Cover</strong> — adjacent to something solid, same size or smaller. <strong>+2 Difficulty</strong> to ranged attacks.</div>
+          <div class="math-formula">+2 Diff</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ══ CONDITIONS ══ -->
+    <div class="card accent col-6" id="sec-cond">
+      <div class="card-title">Conditions</div>
+      <div class="conditions-list">
+        <div class="condition-row">
+          <div class="cond-name">Immobilized</div>
+          <div class="cond-effect">Cannot move voluntarily. Can still act and attack.</div>
+        </div>
+        <div class="condition-row">
+          <div class="cond-name orange">Impaired</div>
+          <div class="cond-effect"><strong>−1 Accuracy</strong> on all attacks, saves, and skill checks.</div>
+        </div>
+        <div class="condition-row">
+          <div class="cond-name">Slowed</div>
+          <div class="cond-effect">Can only use your standard move — no Boost, no special movement from talents or systems. Actions are unaffected.</div>
+        </div>
+        <div class="condition-row">
+          <div class="cond-name red">Stunned</div>
+          <div class="cond-effect"><strong>No actions, no reactions, no movement.</strong> Evasion is capped at <strong>5</strong>. Automatically fails all Hull and Agility checks and saves.</div>
+        </div>
+        <div class="condition-row">
+          <div class="cond-name red">Shut Down</div>
+          <div class="cond-effect">No actions. Evasion becomes 5. <strong>Immune to all tech actions.</strong> Clears all Heat, ends Exposed, ends statuses from tech actions.</div>
+        </div>
+        <div class="condition-row">
+          <div class="cond-name orange">Exposed</div>
+          <div class="cond-effect">Take <strong>double kinetic, explosive, and energy damage</strong>. Does not affect Heat or Burn. Cleared by Stabilize or Shut Down.</div>
+        </div>
+        <div class="condition-row">
+          <div class="cond-name red">Shredded</div>
+          <div class="cond-effect">No longer benefits from <strong>Armor or Resistance</strong>. All damage applies fully.</div>
+        </div>
+        <div class="condition-row">
+          <div class="cond-name">Prone</div>
+          <div class="cond-effect">You are <strong>Slowed</strong>. All attacks against you gain <strong>+1 Accuracy</strong>. Stand up: Quick Action.</div>
+        </div>
+        <div class="condition-row">
+          <div class="cond-name blue">Invisible</div>
+          <div class="cond-effect">All attacks against you have a <strong>50% chance to miss</strong> (roll 1d6: on 1–3, attack misses). You may always attempt to Hide. Cleared by attacking.</div>
+        </div>
+        <div class="condition-row">
+          <div class="cond-name blue">Hidden</div>
+          <div class="cond-effect">Cannot be targeted by hostile actions. Does not cause Engagement. Enemies know only approximate location. Ends if you make any hostile action, reaction, Boost, or lose your concealment.</div>
+        </div>
+        <div class="condition-row">
+          <div class="cond-name green">Lock On</div>
+          <div class="cond-effect">Any attacker may choose to consume Lock On for <strong>+1 Accuracy</strong> on their attack. Persists until consumed — no round limit. Once consumed, the condition ends.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ HEAT & OVERCHARGE ══ -->
+    <div class="card red col-6" id="sec-heat">
+      <div class="card-title">Heat &amp; Overcharge</div>
+
+      <div style="margin-bottom:10px;">
+        <div class="section-label dim" style="margin-bottom:8px;">Heat Thresholds</div>
+        <div class="heat-track">
+          <div class="heat-row">
+            <div class="heat-threshold">Normal<span class="heat-threshold-val">Below Heat Cap</span></div>
+            <div class="heat-desc">No penalty. Accumulate Heat from weapons, Overcharge, and enemy attacks.</div>
+          </div>
+          <div class="heat-row warn">
+            <div class="heat-threshold">Exposed<span class="heat-threshold-val">At Heat Cap</span></div>
+            <div class="heat-desc"><strong>Exposed condition.</strong> Roll a Stress check (1d6 — see Stress table below). Cleared by Stabilize or Shut Down.</div>
+          </div>
+          <div class="heat-row crit">
+            <div class="heat-threshold">Meltdown<span class="heat-threshold-val">Heat Cap while Exposed</span></div>
+            <div class="heat-desc"><strong>Roll Stress check immediately.</strong> If already at max Stress: <strong>reactor meltdown</strong> — mech is destroyed at end of next turn unless Shut Down.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:10px;">
+        <div class="section-label dim" style="margin-bottom:8px;">Overcharge — Quick Action, 1/turn</div>
+        <table class="overcharge-table">
+          <thead>
+            <tr>
+              <th>Use #</th>
+              <th>Heat Taken</th>
+              <th>Resets</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="oc-num">1st</span></td>
+              <td><span class="oc-roll">1 Heat</span></td>
+              <td class="oc-note" rowspan="4">On Full Repair only — carries over between fights</td>
+            </tr>
+            <tr>
+              <td><span class="oc-num">2nd</span></td>
+              <td><span class="oc-roll">1d3 Heat</span></td>
+            </tr>
+            <tr>
+              <td><span class="oc-num">3rd</span></td>
+              <td><span class="oc-roll">1d6 Heat</span></td>
+            </tr>
+            <tr>
+              <td><span class="oc-num">4th+</span></td>
+              <td><span class="oc-roll">1d6+4 Heat</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <div class="section-label dim" style="margin-bottom:8px;">Stress Check — 1d6</div>
+        <table class="damage-table">
+          <thead><tr><th>Roll</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr><td class="dt-roll">5+</td><td class="dt-effect"><strong>Emergency Shunt.</strong> Mech is <strong>Impaired</strong> until end of your next turn.</td></tr>
+            <tr><td class="dt-roll">2–4</td><td class="dt-effect"><strong>Power Plant Destabilize.</strong> Mech gains <strong>Exposed</strong> until it takes action to remove it.</td></tr>
+            <tr><td class="dt-roll">1</td><td class="dt-effect"><strong>Meltdown.</strong> Effect depends on Stress remaining — <em>3+:</em> Exposed until removed. <em>2:</em> Engineering save or reactor meltdown in 1d6 turns; still Exposed on success. <em>1 or lower:</em> Reactor meltdown at end of next turn.</td></tr>
+            <tr><td class="dt-roll">Multiple 1s</td><td class="dt-effect"><strong>Irreversible Meltdown.</strong> Reactor goes critical — meltdown at end of next turn. Cannot be prevented.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ══ STRUCTURE DAMAGE ══ -->
+    <div class="card red col-5" id="sec-struct">
+      <div class="card-title">Structure Damage</div>
+      <div style="font-size:11px;color:var(--dim);margin-bottom:8px;line-height:1.4;">
+        Triggered when a mech reaches <strong style="color:var(--text)">0 HP</strong>. Roll 1d6 on the table below. Excess damage carries over. At <strong style="color:var(--red)">4 Structure damage</strong>: mech is destroyed.
+      </div>
+      <table class="damage-table">
+        <thead><tr><th>Roll</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="dt-roll">5+</td>
+            <td class="dt-effect"><strong>Glancing Blow.</strong> Mech is <strong>Impaired</strong> until end of your next turn.</td>
+          </tr>
+          <tr>
+            <td class="dt-roll">2–4</td>
+            <td class="dt-effect"><strong>System Trauma.</strong> Roll 1d6: on 1–3, all weapons on one mount destroyed; on 4–6, one system destroyed. You choose what. Items with the Limited tag and no charges are not valid choices. If nothing remains, treat as Direct Hit.</td>
+          </tr>
+          <tr>
+            <td class="dt-roll">1</td>
+            <td class="dt-effect"><strong>Direct Hit.</strong> Effect depends on Structure remaining — <em>3+:</em> Stunned until end of next turn. <em>2:</em> Hull save or destroyed; even on success, Stunned. <em>1 or lower:</em> Mech destroyed.</td>
+          </tr>
+          <tr>
+            <td class="dt-roll">Multiple 1s</td>
+            <td class="dt-effect"><strong>Crushing Hit.</strong> Mech is destroyed outright. Pilot may still eject.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="death-note">
+        <strong>Pilot Death:</strong> An injured pilot hit again makes a Hull save. Failure means death. Success: survive at 1 HP, mech destroyed. Pilots can eject from a destroyed mech as a reaction.
+      </div>
+    </div>
+
+    <!-- ══ MOVEMENT & TERRAIN ══ -->
+    <div class="card dim col-4" id="sec-move">
+      <div class="card-title">Movement &amp; Terrain</div>
+      <div class="math-rows">
+        <div class="math-row">
+          <div class="math-label"><strong>Difficult terrain</strong> costs 2 spaces of movement per space entered.</div>
+          <div class="math-formula">×2 cost</div>
+        </div>
+        <div class="math-row">
+          <div class="math-label"><strong>Climbing</strong> costs 2 spaces per space of vertical movement.</div>
+          <div class="math-formula">×2 cost</div>
+        </div>
+        <div class="math-row">
+          <div class="math-label"><strong>Engaged</strong> (adjacent to enemy): moving away triggers <strong>Overwatch</strong>. Use <strong>Disengage</strong> (Full Action) to leave safely — it makes your movement ignore engagement and reactions for the rest of that turn.</div>
+          <div class="math-formula">provokes OW</div>
+        </div>
+        <div class="math-row">
+          <div class="math-label"><strong>Grapple:</strong> Quick Action, melee attack. On hit: both become Engaged, neither can Boost or take reactions. Smaller character is Immobilized and moves with larger.</div>
+          <div class="math-formula">melee attack</div>
+        </div>
+        <div class="math-row">
+          <div class="math-label"><strong>Ram:</strong> Quick Action. Move into adjacent enemy space (same size or smaller). On hit: target knocked Prone, may be pushed back 1 space.</div>
+          <div class="math-formula">melee attack</div>
+        </div>
+        <div class="math-row">
+          <div class="math-label"><strong>Soft Cover:</strong> Obscured/partially blocked. <strong>+1 Difficulty</strong> to ranged attacks. Hard Cover (adjacent to solid object, same size or smaller): <strong>+2 Difficulty</strong>.</div>
+          <div class="math-formula">+1 / +2 Diff</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SKILL CHECKS ══ -->
+    <div class="card blue col-3" id="sec-skill">
+      <div class="card-title">Skill Checks</div>
+      <div class="math-rows">
+        <div class="math-row">
+          <div class="math-label">Roll <strong>1d20</strong> and add the relevant stat bonus. Succeed on 10+ for standard checks.</div>
+          <div class="math-formula">1d20 + stat</div>
+        </div>
+        <div class="math-row">
+          <div class="math-label"><strong>Contested:</strong> Both parties roll. Higher result wins. Ties go to the initiator.</div>
+          <div class="math-formula">higher wins</div>
+        </div>
+        <div class="math-row">
+          <div class="math-label"><strong>Saves:</strong> Roll 1d20 vs. attacker's Save Target. Meet or beat to succeed.</div>
+          <div class="math-formula">d20 vs save TN</div>
+        </div>
+        <div class="math-row">
+          <div class="math-label"><strong>Out of mech:</strong> Pilots use trigger-based skill checks. No mech stats apply.</div>
+          <div class="math-formula">pilot skills only</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ END OF ROUND / REPAIR ══ -->
+    <div class="card green col-5" id="sec-repair">
+      <div class="card-title">Repair &amp; Rest</div>
+      <div class="conditions-list">
+        <div class="condition-row" style="grid-template-columns: 110px 1fr;">
+          <div class="cond-name green">Stabilize</div>
+          <div class="cond-effect">Full Action. Choose: <strong>cool all Heat</strong> (+ clear Exposed/Jammed/1 condition) OR <strong>spend 1 Repair</strong> to restore HP equal to your Repair value.</div>
+        </div>
+        <div class="condition-row" style="grid-template-columns: 110px 1fr;">
+          <div class="cond-name green">Repair (Rest)</div>
+          <div class="cond-effect">Requires ~1 hour downtime. All Heat and conditions clear automatically. Then spend Repairs: <strong>1 Repair</strong> = full HP restore OR repair a destroyed weapon/system. <strong>2 Repairs</strong> = restore 1 Structure or 1 Stress.</div>
+        </div>
+        <div class="condition-row" style="grid-template-columns: 110px 1fr;">
+          <div class="cond-name green">Full Repair</div>
+          <div class="cond-effect">Between sessions or major downtime. Reset to full HP, full Heat Cap, full Repair Cap, clear all conditions and structure damage.</div>
+        </div>
+        <div class="condition-row" style="grid-template-columns: 110px 1fr;">
+          <div class="cond-name">Structure</div>
+          <div class="cond-effect">Structure damage is <strong>permanent</strong> until a Full Repair. It is a damage track (max 4) — at 4 structure hits the mech is destroyed. Costs 2 Repairs to remove 1 Structure during Rest.</div>
+        </div>
+        <div class="condition-row" style="grid-template-columns: 110px 1fr;">
+          <div class="cond-name">Stress</div>
+          <div class="cond-effect">Stress damage is <strong>permanent</strong> until a Full Repair. Each point of Stress remaining worsens future <strong>stress check outcomes</strong> — fewer remaining means worse meltdown results. At 4 stress: mech destroyed.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ QUICK REMINDER ══ -->
+    <div class="card accent col-7" id="sec-tips">
+      <div class="card-title">Things to Remember at the Table</div>
+      <div class="conditions-list">
+        <div class="condition-row" style="grid-template-columns: 160px 1fr;">
+          <div class="cond-name">Bonus damage</div>
+          <div class="cond-effect">Bonus damage dice (from talents, systems, etc.) are rolled separately and added after the main roll. On a crit, bonus damage dice are also rolled twice.
+        </div>
+        <div class="condition-row" style="grid-template-columns: 160px 1fr;">
+          <div class="cond-name">Armor floor</div>
+          <div class="cond-effect">Armor cannot reduce damage below 1 on a hit. You always take at least 1.</div>
+        </div>
+        <div class="condition-row" style="grid-template-columns: 160px 1fr;">
+          <div class="cond-name">Crit = roll twice</div>
+          <div class="cond-effect">On a crit, roll all damage dice twice and take the <strong>higher</strong> of the two rolls, then add flat bonuses once.</div>
+        </div>
+        <div class="condition-row" style="grid-template-columns: 160px 1fr;">
+          <div class="cond-name">Reactions reset</div>
+          <div class="cond-effect">You get 1 reaction per round. It resets at the <strong>start of your turn</strong>, not end of round.</div>
+        </div>
+        <div class="condition-row" style="grid-template-columns: 160px 1fr;">
+          <div class="cond-name">Boost ≠ Move</div>
+          <div class="cond-effect">Boost is a separate Quick Action that lets you move again — it's not part of your standard move.</div>
+        </div>
+        <div class="condition-row" style="grid-template-columns: 160px 1fr;">
+          <div class="cond-name">Tech vs Evasion</div>
+          <div class="cond-effect">Tech attacks target <strong>E-Defense</strong>, not Evasion. Check which your weapon uses.</div>
+        </div>
+        <div class="condition-row" style="grid-template-columns: 160px 1fr;">
+          <div class="cond-name">HP ≠ Death</div>
+          <div class="cond-effect">Hitting 0 HP triggers Structure damage — you're not dead yet. Your mech might be on fire, but it's still a mech.</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /ref-grid -->
+
+  <footer class="doc-footer">
+    <span>Coalition Space — Combat Reference</span>
+    <span>Based on Lancer by Massif Press</span>
+    <span>This is not an official Lancer product. Not affiliated with or endorsed by Massif Press.</span>
+  </footer>
+
+</div>
+<script>
+function jumpToCard(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  // Remove any existing highlight
+  document.querySelectorAll('.card-highlight').forEach(e => e.classList.remove('card-highlight'));
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Flash highlight after scroll settles
+  setTimeout(() => {
+    el.classList.add('card-highlight');
+    el.addEventListener('animationend', () => el.classList.remove('card-highlight'), { once: true });
+  }, 400);
+}
+</script>
+</body>
+</html>
