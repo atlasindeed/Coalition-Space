@@ -603,6 +603,105 @@ function handleMapClick(e) {
   if (e.target.closest('.loc-group')) return;
   closePanel();
 }
+
+const locations = {
+  'kessel7': {
+    type: 'Star Rat Station', name: 'Kessel-7', coords: 'D-2 / OUTER BANDS',
+    tags: [['green','Star Rats'],['dim','Independent'],['dim','SAR Certified']],
+    stats: [{label:'Population',value:'~1,200',cls:''},{label:'Status',value:'Operational',cls:'green'},{label:'CDF Presence',value:'None',cls:'dim'},{label:'Union Rating',value:'Recognized',cls:'blue'}],
+    desc: "Star Rat HQ. The common room board lists every crew ever recovered from this station. And separately, everyone who wasn't."
+  },
+  'port-amaranth': {
+    type: 'Deep-Anchor Station', name: 'Port Amaranth', coords: 'F-4 / BELT INNER EDGE',
+    tags: [['accent','Major Hub'],['blue','CDF Garrison'],['dim','Transit Junction']],
+    stats: [{label:'Population',value:'~14,000',cls:''},{label:'Status',value:'Active',cls:'green'},{label:'CDF Presence',value:'Garrison',cls:'red'},{label:'Union Rating',value:'Recognized',cls:'blue'}],
+    desc: "The commercial capital of Coalition Space. Sits at the junction of the Inner Transit Spine and the Belt approach corridors. Full shipyard, Coalition administrative offices, a CDF garrison, and a functioning court."
+  },
+  'the-drift': {
+    type: 'Deep-Anchor Station', name: 'The Drift', coords: 'G-5 / DEEP MARGIN',
+    tags: [['accent','Anchor Station'],['dim','Low Oversight'],['dim','Independent']],
+    stats: [{label:'Population',value:'~3,400',cls:''},{label:'Status',value:'Active',cls:'green'},{label:'CDF Presence',value:'Minimal',cls:'dim'},{label:'Union Rating',value:'Noted',cls:'dim'}],
+    desc: "Further out than most stations are comfortable with. Started as a waypoint for deep-margin prospectors. Coalition authority here is nominal."
+  },
+  'orvane': {
+    type: 'Deep-Anchor Station', name: 'Waystation Orvane', coords: 'G-2 / BELT OUTER APPROACH',
+    tags: [['accent','Waystation'],['blue','CDF Adjacent'],['accent','Exam Site']],
+    stats: [{label:'Population',value:'~5,800',cls:''},{label:'Status',value:'Active',cls:'green'},{label:'CDF Presence',value:'Regular',cls:'red'},{label:'Union Rating',value:'Recognized',cls:'blue'}],
+    desc: "Guards the outer approach to the Belt's northern arm. The Licensing Board holds examination briefings here twice a year. Produces more certified Lancers per capita than anywhere else in the region."
+  },
+  'coalition-hub': {
+    type: 'Administrative Center', name: 'Coalition Hub', coords: 'C-3 / INNER BANDS',
+    tags: [['blue','Coalition Gov.'],['blue','LLB HQ'],['accent','Capital Station']],
+    stats: [{label:'Population',value:'~22,000',cls:''},{label:'Status',value:'Active',cls:'green'},{label:'CDF Presence',value:'HQ',cls:'red'},{label:'Union Rating',value:'Semi-Autonomous',cls:'blue'}],
+    desc: "The political and administrative heart of Coalition Space. Home to the Coalition Administrative Authority, CDF regional command, and the Operators' Assembly."
+  },
+  'vess': {
+    type: 'Colony / Settlement', name: 'Vess Settlement', coords: 'B-5 / OUTER KARROW MARGIN',
+    tags: [['dim','Colony'],['dim','Heavy-Grav'],['dim','Belt-Adjacent']],
+    stats: [{label:'Population',value:'~8,200',cls:''},{label:'Status',value:'Established',cls:'green'},{label:'CDF Presence',value:'Patrol',cls:'dim'},{label:'Economy',value:'Mixed',cls:''}],
+    desc: "High-gravity settlement near the southern Belt approach. Exports ore workers, mechanics, and a disproportionate number of Star Rat recruits."
+  },
+  'koval': {
+    type: 'CDF Military Station', name: 'CDF Station Koval', coords: 'D-2 / INNER APPROACH',
+    tags: [['red','CDF Military'],['red','Defense Force'],['blue','Lancer-Adjacent']],
+    stats: [{label:'Personnel',value:'~2,100',cls:'red'},{label:'Status',value:'Active',cls:'green'},{label:'Mech Complement',value:'Classified',cls:'red'},{label:'Zone Coverage',value:'Inner Bands',cls:''}],
+    desc: "The CDF's primary installation in the inner bands. Well-positioned and well-supplied. First formal responder to anything that escalates past what local assets can handle. Runs fast-response vessels on permanent standby. Its relationship with the Star Rats is officially 'cooperative'."
+  },
+  'calderon': {
+    type: 'Mining Outpost', name: "Calderon's Reach", coords: 'D-5 / SOUTHERN BELT MARGIN',
+    tags: [['dim','Outpost'],['dim','Mining'],['dim','Guild-Affiliated']],
+    stats: [{label:'Population',value:'~1,900',cls:''},{label:'Status',value:'Active',cls:'green'},{label:'CDF Presence',value:'None',cls:'dim'},{label:'Economy',value:'Ore / Extraction',cls:''}],
+    desc: "A temporary ore camp that refused to stop being temporary. Off most official patrol routes. Relies on the Guild's dispute process and the Star Rats for anything that qualifies as an emergency."
+  },
+  'harrath': {
+    type: 'Agricultural Colony', name: 'New Harrath', coords: 'E-6 / SOUTHERN OUTER',
+    tags: [['green','Colony'],['dim','Agricultural'],['dim','Neutral']],
+    stats: [{label:'Population',value:'~11,000',cls:''},{label:'Status',value:'Established',cls:'green'},{label:'CDF Presence',value:'Patrol',cls:'dim'},{label:'Economy',value:'Agricultural',cls:'green'}],
+    desc: "One of the main reasons Coalition Space isn't dependent on inner-lane food shipments. Produces grain, protein cultures, and processed foodstuff for stations and outposts across the region."
+  },
+  'union-relay': {
+    type: 'Union Comm Relay', name: 'Union Relay Epsilon', coords: 'I-2 / UNION BOUNDARY',
+    tags: [['purple','Union'],['purple','Comm Relay'],['dim','Exterior']],
+    stats: [{label:'Personnel',value:'~80',cls:'dim'},{label:'Status',value:'Active',cls:'green'},{label:'Authority',value:'Union Direct',cls:'blue'},{label:'Response Time',value:'3 Weeks+',cls:'red'}],
+    desc: "The closest thing to a Union presence in Coalition Space. A skeleton crew processes reports, forwards requests, and periodically reminds the Coalition it is technically a semi-autonomous arm of the Union."
+  },
+  'assembly-dock': {
+    type: "Operators' Assembly", name: 'Assembly Dock', coords: 'F-2 / OUTER BELT APPROACH',
+    tags: [['accent','Assembly'],['dim','Commercial'],['dim','Political']],
+    stats: [{label:'Personnel',value:'~600',cls:''},{label:'Status',value:'Active',cls:'green'},{label:'CDF Presence',value:'None',cls:'dim'},{label:'Influence',value:'Significant',cls:''}],
+    desc: "Operators' Assembly HQ. Technically a neutral facility. Meetings here are private."
+  },
+};
+
+function showLocation(id) {
+  const loc = locations[id];
+  if (!loc) return;
+  document.getElementById('panel-type').textContent = loc.type;
+  document.getElementById('panel-name').textContent = loc.name;
+  document.getElementById('panel-coords').textContent = loc.coords;
+  let html = '';
+  if (loc.tags?.length) {
+    html += '<div class="panel-tags">';
+    loc.tags.forEach(([cls, label]) => { html += `<span class="panel-tag ${cls}">${label}</span>`; });
+    html += '</div>';
+  }
+  if (loc.stats?.length) {
+    html += '<div class="panel-stats">';
+    loc.stats.forEach(s => { html += `<div class="panel-stat"><div class="pstat-label">${s.label}</div><div class="pstat-value ${s.cls}">${s.value}</div></div>`; });
+    html += '</div>';
+  }
+  if (loc.desc) html += `<p class="panel-desc">${loc.desc}</p>`;
+  document.getElementById('panel-body').innerHTML = html;
+  document.getElementById('detail-panel').classList.add('open');
+  document.getElementById('map-hint').style.display = 'none';
+  setTimeout(() => { canvas.width = 0; requestAnimationFrame(drawStars); }, 280);
+}
+
+function closePanel() {
+  document.getElementById('detail-panel').classList.remove('open');
+  document.getElementById('map-hint').style.display = '';
+  setTimeout(() => { canvas.width = 0; requestAnimationFrame(drawStars); }, 280);
+}
 </script>
 </body>
-</html>
+  </html>
