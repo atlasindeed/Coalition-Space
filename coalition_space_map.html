@@ -58,12 +58,8 @@
   .map-body { flex: 1; display: flex; overflow: hidden; position: relative; }
 
   .map-canvas { flex: 1; position: relative; overflow: hidden; touch-action: none; }
-  .map-canvas::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 2px, var(--scan) 2px, var(--scan) 4px); pointer-events: none; z-index: 2; }
-  #star-bg { position: absolute; inset: 0; pointer-events: none; }
   #map-transform { position: absolute; top: 0; left: 0; transform-origin: 0 0; will-change: transform; }
-  #sector-map { display: block; width: 1000px; height: 700px; }
-
-  /* RESET BUTTON — mobile only */
+  #sector-map { display: block; }
   .map-reset {
     display: none;
     position: absolute;
@@ -82,7 +78,10 @@
     -webkit-tap-highlight-color: transparent;
   }
   .map-reset:active { background: var(--accent-bright); }
-  @media (max-width: 680px) { .map-reset { display: block; } }
+  @media (max-width: 1200px) { .map-reset { display: block; } }
+  .map-canvas::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 2px, var(--scan) 2px, var(--scan) 4px); pointer-events: none; z-index: 2; }
+  #star-bg { position: absolute; inset: 0; pointer-events: none; }
+  #sector-map { width: 100%; height: 100%; }
 
   /* SVG */
   .grid-line { stroke: var(--border); stroke-width: 0.5; opacity: 0.5; }
@@ -197,7 +196,7 @@
       <div class="map-subtitle">Sector Chart — Outer Bands / Karrow</div>
     </div>
     <div style="display:flex;align-items:center;gap:16px;">
-      <a href="index.html" class="nav-link">← Hub</a>
+      <a href="coalition_space_intro_2.html" class="nav-link">← Orientation Packet</a>
       <div class="legend">
         <div class="legend-item"><div class="legend-dot" style="background:#e8a020;box-shadow:0 0 4px #e8a020"></div>Deep-Anchor</div>
         <div class="legend-item"><div class="legend-dot" style="background:#4a9adf"></div>Settlement</div>
@@ -212,7 +211,7 @@
     <div class="map-canvas" id="map-canvas" onclick="handleMapClick(event)">
       <canvas id="star-bg"></canvas>
       <div id="map-transform">
-      <svg id="sector-map" viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid slice">
+      <svg id="sector-map" viewBox="0 0 1000 700" style="display:block;width:1000px;height:700px;">
         <defs>
           <filter id="glow-accent" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -285,7 +284,6 @@
         <path class="lane" d="M 600,350 Q 680,450 760,530"/>
         <path class="lane" d="M 720,170 Q 580,160 440,150 Q 340,150 260,200"/>
         <path class="lane" d="M 210,460 Q 290,500 360,510"/>
-        <path class="lane" d="M 420,200 Q 430,240 440,280" stroke="#602020"/>
         <text class="lane-label" x="560" y="215" transform="rotate(-8 560 215)">INNER TRANSIT SPINE</text>
         <text class="lane-label" x="340" y="258" transform="rotate(-5 340 258)">KESSEL CORRIDOR</text>
         <text class="lane-label" x="672" y="462" transform="rotate(30 672 462)">DEEP MARGIN RUN</text>
@@ -295,17 +293,12 @@
         <path class="lane" d="M 500,530 Q 550,450 600,350"/>
         <text class="lane-label" x="562" y="448" transform="rotate(-58 562 448)">HARRATH RUN</text>
 
-        <!-- Port Amaranth → Coalition Hub — DANGER -->
-        <path class="lane" d="M 600,350 Q 430,340 240,310" stroke="#8a2020" stroke-dasharray="4 3" stroke-width="1.2" opacity="0.8"/>
-        <text class="lane-label" x="400" y="326" transform="rotate(-4 400 326)" fill="#8a2020">⚠ THE CONTESTED REACH</text>
+        <!-- Contested Reach removed -->
 
         <!-- Kessel-7 → Coalition Hub -->
         <path class="lane" d="M 260,200 Q 252,255 240,310"/>
 
         <!-- HAZARDS -->
-        <rect x="75" y="350" width="120" height="55" fill="rgba(150,20,20,0.04)" stroke="#601010" stroke-width="0.5" stroke-dasharray="4 3"/>
-        <text class="hazard-label" x="135" y="373" text-anchor="middle">⚠ PIRACY CORRIDOR</text>
-        <text class="hazard-label" x="135" y="386" text-anchor="middle" font-size="7">UNPATROLLED</text>
         <ellipse cx="860" cy="560" rx="55" ry="35" transform="rotate(-20 860 560)" fill="rgba(80,60,20,0.05)" stroke="#5a4010" stroke-width="0.5" stroke-dasharray="3 3"/>
         <text class="hazard-label" x="860" y="557" text-anchor="middle" fill="#5a4010">DEBRIS FIELD</text>
         <text class="hazard-label" x="860" y="569" text-anchor="middle" fill="#5a4010" font-size="7">NAV HAZARD</text>
@@ -350,7 +343,6 @@
           <circle class="loc-ring" cx="0" cy="0" r="11" stroke="#4a9adf"/>
           <circle class="loc-core" cx="0" cy="0" r="6" fill="#2a6aaa"/>
           <circle cx="0" cy="0" r="2.5" fill="#aaddff"/>
-          <rect x="-9" y="-9" width="18" height="18" fill="none" stroke="#4a9adf" stroke-width="0.8" opacity="0.4"/>
           <text class="loc-label-text" x="14" y="-8">COALITION HUB</text>
           <text class="loc-sublabel" x="14" y="4">Administrative Center</text>
         </g>
@@ -453,12 +445,14 @@ function drawStars() {
   }
 }
 requestAnimationFrame(() => requestAnimationFrame(drawStars));
-window.addEventListener('resize', () => requestAnimationFrame(drawStars));
+window.addEventListener('resize', () => { requestAnimationFrame(drawStars); initView(); });
 
 // ── PAN / ZOOM ──
-const mapEl    = document.getElementById('map-canvas');
-const xformEl  = document.getElementById('map-transform');
-const SVG_W = 1000, SVG_H = 700;
+// Content bounding box: tightly fitted to actual location cluster
+const CONTENT = { x: 170, y: 130, w: 840, h: 420 };
+const mapEl   = document.getElementById('map-canvas');
+const xformEl = document.getElementById('map-transform');
+const MIN_SCALE = 0.2, MAX_SCALE = 5;
 let tx = 0, ty = 0, scale = 1;
 let defaultTx = 0, defaultTy = 0, defaultScale = 1;
 
@@ -468,33 +462,35 @@ function applyTransform() {
 
 function initView() {
   const r = mapEl.getBoundingClientRect();
-  const isMobile = r.width < 681;
-  if (isMobile) {
-    // Fit the full map into the viewport with a little padding
-    defaultScale = Math.min(r.width / SVG_W, r.height / SVG_H) * 0.95;
-    defaultTx = (r.width  - SVG_W * defaultScale) / 2;
-    defaultTy = (r.height - SVG_H * defaultScale) / 2;
-  } else {
-    // Desktop: fill like the old preserveAspectRatio slice behaviour
-    defaultScale = Math.max(r.width / SVG_W, r.height / SVG_H);
-    defaultTx = (r.width  - SVG_W * defaultScale) / 2;
-    defaultTy = (r.height - SVG_H * defaultScale) / 2;
-  }
+  const vw = r.width, vh = r.height;
+  const isMobile = vw < 681;
+  const pad = isMobile ? 0.90 : 0.82;
+  const scaleX = vw * pad / CONTENT.w;
+  const scaleY = vh * pad / CONTENT.h;
+  // Fit content in viewport; cap at 1.6 on desktop so it doesn't over-zoom
+  const maxScale = isMobile ? 3 : 1.6;
+  defaultScale = Math.min(scaleX, scaleY, maxScale);
+  // Center the content box in the viewport
+  const contentCX = CONTENT.x + CONTENT.w / 2;
+  const contentCY = CONTENT.y + CONTENT.h / 2;
+  defaultTx = vw / 2 - contentCX * defaultScale;
+  defaultTy = vh / 2 - contentCY * defaultScale;
   tx = defaultTx; ty = defaultTy; scale = defaultScale;
   applyTransform();
 }
 
-function resetView() { tx = defaultTx; ty = defaultTy; scale = defaultScale; applyTransform(); }
+function resetView() {
+  tx = defaultTx; ty = defaultTy; scale = defaultScale;
+  applyTransform();
+}
 
 requestAnimationFrame(() => requestAnimationFrame(initView));
-window.addEventListener('resize', initView);
 
 // ── TOUCH HANDLING ──
 let isDragging = false;
 let dragStartX = 0, dragStartY = 0, dragStartTx = 0, dragStartTy = 0;
 let lastPinchDist = null;
 let didDrag = false;
-const MIN_SCALE = 0.3, MAX_SCALE = 4;
 
 function getTouchDist(t) {
   const dx = t[0].clientX - t[1].clientX;
@@ -548,7 +544,6 @@ mapEl.addEventListener('touchmove', e => {
 mapEl.addEventListener('touchend', e => {
   isDragging = false;
   lastPinchDist = null;
-  // touch-action:none suppresses synthetic clicks, so handle taps manually
   if (!didDrag && e.changedTouches.length === 1) {
     const t = e.changedTouches[0];
     const el = document.elementFromPoint(t.clientX, t.clientY);
@@ -564,107 +559,47 @@ mapEl.addEventListener('touchend', e => {
   }
 });
 
-const locations = {
-  'kessel7': {
-    type: 'Star Rat Station', name: 'Kessel-7', coords: 'D-2 / OUTER BANDS',
-    tags: [['green','Star Rats'],['dim','Independent'],['dim','SAR Certified']],
-    stats: [{label:'Population',value:'~1,200',cls:''},{label:'Status',value:'Operational',cls:'green'},{label:'CDF Presence',value:'None',cls:'dim'},{label:'Union Rating',value:'Recognized',cls:'blue'}],
-    desc: "Star Rat HQ. The common room board lists every crew ever recovered from this station. And separately, everyone who wasn't."
-  },
-  'port-amaranth': {
-    type: 'Deep-Anchor Station', name: 'Port Amaranth', coords: 'F-4 / BELT INNER EDGE',
-    tags: [['accent','Major Hub'],['blue','CDF Garrison'],['dim','Transit Junction']],
-    stats: [{label:'Population',value:'~14,000',cls:''},{label:'Status',value:'Active',cls:'green'},{label:'CDF Presence',value:'Garrison',cls:'red'},{label:'Union Rating',value:'Recognized',cls:'blue'}],
-    desc: "The commercial capital of Coalition Space. Sits at the junction of the Inner Transit Spine and the Belt approach corridors. Full shipyard, Coalition administrative offices, a CDF garrison, and a functioning court."
-  },
-  'the-drift': {
-    type: 'Deep-Anchor Station', name: 'The Drift', coords: 'G-5 / DEEP MARGIN',
-    tags: [['accent','Anchor Station'],['dim','Low Oversight'],['dim','Independent']],
-    stats: [{label:'Population',value:'~3,400',cls:''},{label:'Status',value:'Active',cls:'green'},{label:'CDF Presence',value:'Minimal',cls:'dim'},{label:'Union Rating',value:'Noted',cls:'dim'}],
-    desc: "Further out than most stations are comfortable with. Started as a waypoint for deep-margin prospectors. Coalition authority here is nominal."
-  },
-  'orvane': {
-    type: 'Deep-Anchor Station', name: 'Waystation Orvane', coords: 'G-2 / BELT OUTER APPROACH',
-    tags: [['accent','Waystation'],['blue','CDF Adjacent'],['accent','Exam Site']],
-    stats: [{label:'Population',value:'~5,800',cls:''},{label:'Status',value:'Active',cls:'green'},{label:'CDF Presence',value:'Regular',cls:'red'},{label:'Union Rating',value:'Recognized',cls:'blue'}],
-    desc: "Guards the outer approach to the Belt's northern arm. The Licensing Board holds examination briefings here twice a year. Produces more certified Lancers per capita than anywhere else in the region."
-  },
-  'coalition-hub': {
-    type: 'Administrative Center', name: 'Coalition Hub', coords: 'C-3 / INNER BANDS',
-    tags: [['blue','Coalition Gov.'],['blue','LLB HQ'],['accent','Capital Station']],
-    stats: [{label:'Population',value:'~22,000',cls:''},{label:'Status',value:'Active',cls:'green'},{label:'CDF Presence',value:'HQ',cls:'red'},{label:'Union Rating',value:'Semi-Autonomous',cls:'blue'}],
-    desc: "The political and administrative heart of Coalition Space. Home to the Coalition Administrative Authority, CDF regional command, and the Operators' Assembly."
-  },
-  'vess': {
-    type: 'Colony / Settlement', name: 'Vess Settlement', coords: 'B-5 / OUTER KARROW MARGIN',
-    tags: [['dim','Colony'],['dim','Heavy-Grav'],['dim','Belt-Adjacent']],
-    stats: [{label:'Population',value:'~8,200',cls:''},{label:'Status',value:'Established',cls:'green'},{label:'CDF Presence',value:'Patrol',cls:'dim'},{label:'Economy',value:'Mixed',cls:''}],
-    desc: "High-gravity settlement near the southern Belt approach. Exports ore workers, mechanics, and a disproportionate number of Star Rat recruits."
-  },
-  'koval': {
-    type: 'CDF Military Station', name: 'CDF Station Koval', coords: 'D-2 / INNER APPROACH',
-    tags: [['red','CDF Military'],['red','Defense Force'],['blue','Lancer-Adjacent']],
-    stats: [{label:'Personnel',value:'~2,100',cls:'red'},{label:'Status',value:'Active',cls:'green'},{label:'Mech Complement',value:'Classified',cls:'red'},{label:'Zone Coverage',value:'Inner Bands',cls:''}],
-    desc: "The CDF's primary installation in the inner bands. Well-positioned and well-supplied — the first formal responder to anything that escalates past what local assets can handle. Runs fast-response vessels on permanent standby. Its relationship with the Star Rats is officially 'cooperative'."
-  },
-  'calderon': {
-    type: 'Mining Outpost', name: "Calderon's Reach", coords: 'D-5 / SOUTHERN BELT MARGIN',
-    tags: [['dim','Outpost'],['dim','Mining'],['dim','Guild-Affiliated']],
-    stats: [{label:'Population',value:'~1,900',cls:''},{label:'Status',value:'Active',cls:'green'},{label:'CDF Presence',value:'None',cls:'dim'},{label:'Economy',value:'Ore / Extraction',cls:''}],
-    desc: "A temporary ore camp that refused to stop being temporary. Off most official patrol routes — relies on the Guild's dispute process and the Star Rats for anything that qualifies as an emergency."
-  },
-  'harrath': {
-    type: 'Agricultural Colony', name: 'New Harrath', coords: 'E-6 / SOUTHERN OUTER',
-    tags: [['green','Colony'],['dim','Agricultural'],['dim','Neutral']],
-    stats: [{label:'Population',value:'~11,000',cls:''},{label:'Status',value:'Established',cls:'green'},{label:'CDF Presence',value:'Patrol',cls:'dim'},{label:'Economy',value:'Agricultural',cls:'green'}],
-    desc: "One of the main reasons Coalition Space isn't dependent on inner-lane food shipments. Produces grain, protein cultures, and processed foodstuff for stations and outposts across the region."
-  },
-  'union-relay': {
-    type: 'Union Comm Relay', name: 'Union Relay Epsilon', coords: 'I-2 / UNION BOUNDARY',
-    tags: [['purple','Union'],['purple','Comm Relay'],['dim','Exterior']],
-    stats: [{label:'Personnel',value:'~80',cls:'dim'},{label:'Status',value:'Active',cls:'green'},{label:'Authority',value:'Union Direct',cls:'blue'},{label:'Response Time',value:'3 Weeks+',cls:'red'}],
-    desc: "The closest thing to a Union presence in Coalition Space. A skeleton crew processes reports, forwards requests, and periodically reminds the Coalition it is technically a semi-autonomous arm of the Union."
-  },
-  'assembly-dock': {
-    type: "Operators' Assembly", name: 'Assembly Dock', coords: 'F-2 / OUTER BELT APPROACH',
-    tags: [['accent','Assembly'],['dim','Commercial'],['dim','Political']],
-    stats: [{label:'Personnel',value:'~600',cls:''},{label:'Status',value:'Active',cls:'green'},{label:'CDF Presence',value:'None',cls:'dim'},{label:'Influence',value:'Significant',cls:''}],
-    desc: "Operators' Assempbly HQ. Technically a neutral facility. Meetings here are private."
-  },
-};
+// ── MOUSE WHEEL ZOOM (desktop) ──
+mapEl.addEventListener('wheel', e => {
+  e.preventDefault();
+  const rect = mapEl.getBoundingClientRect();
+  const originX = e.clientX - rect.left;
+  const originY = e.clientY - rect.top;
+  const delta = e.deltaY > 0 ? 0.9 : 1.1;
+  const newScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale * delta));
+  tx = originX - (originX - tx) * (newScale / scale);
+  ty = originY - (originY - ty) * (newScale / scale);
+  scale = newScale;
+  applyTransform();
+}, { passive: false });
 
-function showLocation(id) {
-  const loc = locations[id];
-  if (!loc) return;
-  document.getElementById('panel-type').textContent = loc.type;
-  document.getElementById('panel-name').textContent = loc.name;
-  document.getElementById('panel-coords').textContent = loc.coords;
-  let html = '';
-  if (loc.tags?.length) {
-    html += '<div class="panel-tags">';
-    loc.tags.forEach(([cls, label]) => { html += `<span class="panel-tag ${cls}">${label}</span>`; });
-    html += '</div>';
-  }
-  if (loc.stats?.length) {
-    html += '<div class="panel-stats">';
-    loc.stats.forEach(s => { html += `<div class="panel-stat"><div class="pstat-label">${s.label}</div><div class="pstat-value ${s.cls}">${s.value}</div></div>`; });
-    html += '</div>';
-  }
-  if (loc.desc) html += `<p class="panel-desc">${loc.desc}</p>`;
-  document.getElementById('panel-body').innerHTML = html;
-  document.getElementById('detail-panel').classList.add('open');
-  document.getElementById('map-hint').style.display = 'none';
-  // Redraw stars after panel animation settles
-  setTimeout(() => { canvas.width = 0; requestAnimationFrame(drawStars); }, 280);
-}
+// ── MOUSE DRAG (desktop) ──
+let mouseDown = false, mouseMoved = false;
+let mouseStartX = 0, mouseStartY = 0, mouseStartTx = 0, mouseStartTy = 0;
 
-function closePanel() {
-  document.getElementById('detail-panel').classList.remove('open');
-  document.getElementById('map-hint').style.display = '';
-  setTimeout(() => { canvas.width = 0; requestAnimationFrame(drawStars); }, 280);
-}
+mapEl.addEventListener('mousedown', e => {
+  if (e.button !== 0) return;
+  mouseDown = true; mouseMoved = false;
+  mouseStartX = e.clientX; mouseStartY = e.clientY;
+  mouseStartTx = tx; mouseStartTy = ty;
+  mapEl.style.cursor = 'grabbing';
+});
+window.addEventListener('mousemove', e => {
+  if (!mouseDown) return;
+  const dx = e.clientX - mouseStartX;
+  const dy = e.clientY - mouseStartY;
+  if (Math.abs(dx) > 3 || Math.abs(dy) > 3) mouseMoved = true;
+  tx = mouseStartTx + dx;
+  ty = mouseStartTy + dy;
+  applyTransform();
+});
+window.addEventListener('mouseup', () => {
+  mouseDown = false;
+  mapEl.style.cursor = 'grab';
+});
 
 function handleMapClick(e) {
+  if (mouseMoved) return;
   if (e.target.closest('.loc-group')) return;
   closePanel();
 }
