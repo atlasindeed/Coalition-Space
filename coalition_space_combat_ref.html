@@ -615,22 +615,22 @@ body {
         </div>
         <div class="phase-row dim">
           <div class="phase-name">Free Actions</div>
-          <div class="phase-desc">Talk, drop items, activate toggles. GM discretion on quantity.</div>
+          <div class="phase-desc">Talk, drop items, activate toggles. Use common sense on how many.</div>
         </div>
       </div>
     </div>
 
     <!-- ══ FULL ACTIONS ══ -->
     <div class="card accent col-4" id="sec-full">
-      <div class="card-title">Full Actions <span style="font-size:10px;color:var(--dim);font-weight:300;text-transform:none;letter-spacing:0">&nbsp;— uses your entire action</span></div>
+      <div class="card-title">Full Actions <span style="font-size:10px;color:var(--dim);font-weight:300;text-transform:none;letter-spacing:0">&nbsp;· uses your entire action</span></div>
       <div class="action-list">
         <div class="action-item full">
           <div class="action-name">Barrage</div>
-          <div class="action-note">Attack with <em>1 weapon from each of 2 different mounts</em>, or once with a Superheavy. Each mount that fires may also fire an Aux weapon from that same mount — the Aux deals no bonus damage. You cannot fire two weapons from the same mount.</div>
+          <div class="action-note">Attack with <em>1 weapon from each of 2 different mounts</em>, or once with a Superheavy. Each mount that fires may also pair with an Aux weapon from that same mount; the Aux deals no bonus damage. Two weapons from the same mount is not legal.</div>
         </div>
         <div class="action-item full">
           <div class="action-name">Stabilize</div>
-          <div class="action-note">Choose one: <em>cool all Heat</em> (clears Exposed, Jammed, <strong>and</strong> 1 other condition) — or <em>spend 1 Repair</em> to restore HP equal to your Repair value.</div>
+          <div class="action-note">Choose one: <em>cool all Heat</em> (clears Exposed, Jammed, <strong>and</strong> 1 other condition), or <em>spend 1 Repair</em> to restore HP equal to your Repair value.</div>
         </div>
         <div class="action-item full">
           <div class="action-name">Full Tech</div>
@@ -653,11 +653,11 @@ body {
 
     <!-- ══ QUICK ACTIONS ══ -->
     <div class="card blue col-4" id="sec-quick">
-      <div class="card-title">Quick Actions <span style="font-size:10px;color:var(--dim);font-weight:300;text-transform:none;letter-spacing:0">&nbsp;— 2 per turn</span></div>
+      <div class="card-title">Quick Actions <span style="font-size:10px;color:var(--dim);font-weight:300;text-transform:none;letter-spacing:0">&nbsp;· 2 per turn</span></div>
       <div class="action-list">
         <div class="action-item quick">
           <div class="action-name">Skirmish</div>
-          <div class="action-note">Attack with <em>1 weapon</em>. You may also fire a different Aux weapon on the same mount — that Aux weapon deals no bonus damage. Superheavy weapons cannot be used in a Skirmish.</div>
+          <div class="action-note">Attack with <em>1 weapon</em>. You may also fire a different Aux weapon on the same mount; that Aux weapon deals no bonus damage. Superheavy weapons cannot be used in a Skirmish.</div>
         </div>
         <div class="action-item quick">
           <div class="action-name">Boost</div>
@@ -665,7 +665,7 @@ body {
         </div>
         <div class="action-item quick">
           <div class="action-name">Lock On</div>
-          <div class="action-note">Target gets the <em>Lock On</em> condition. It persists until consumed — <em>any</em> attacker may choose to consume it on their attack for <strong>+1 Accuracy</strong>. Once consumed, the condition ends.</div>
+          <div class="action-note">Target gets the <em>Lock On</em> condition. It sticks around until someone uses it. Any attacker can consume it for <strong>+1 Accuracy</strong> on their roll. Gone after that.</div>
         </div>
         <div class="action-item quick">
           <div class="action-name">Scan</div>
@@ -673,7 +673,7 @@ body {
         </div>
         <div class="action-item quick">
           <div class="action-name">Hide</div>
-          <div class="action-note">Requires cover or concealment. Become <em>Hidden</em> — position unknown until you attack or move into the open.</div>
+          <div class="action-note">Requires cover or concealment. Become <em>Hidden</em>; enemies lose track of your exact position until you attack or step into the open.</div>
         </div>
         <div class="action-item quick">
           <div class="action-name">Quick Tech</div>
@@ -692,7 +692,7 @@ body {
 
     <!-- ══ REACTIONS ══ -->
     <div class="card green col-3" id="sec-react">
-      <div class="card-title">Reactions <span style="font-size:10px;color:var(--dim);font-weight:300;text-transform:none;letter-spacing:0">&nbsp;— 1 per round</span></div>
+      <div class="card-title">Reactions <span style="font-size:10px;color:var(--dim);font-weight:300;text-transform:none;letter-spacing:0">&nbsp;· 1 per round</span></div>
       <div class="action-list">
         <div class="action-item react">
           <div class="action-name">Brace</div>
@@ -700,11 +700,11 @@ body {
         </div>
         <div class="action-item react">
           <div class="action-name">Overwatch</div>
-          <div class="action-note">Trigger: a hostile character starts any movement within one of your weapons' Threat range. Immediately make a Skirmish against them before they move.</div>
+          <div class="action-note">When a hostile character starts moving inside one of your weapons' Threat range, hit them with a Skirmish before they go anywhere.</div>
         </div>
         <div class="action-item react">
           <div class="action-name">Systems</div>
-          <div class="action-note">Some weapons and systems grant additional reactions. Check your mech sheet.</div>
+          <div class="action-note">Some weapons and systems add more reaction options. Check your sheet.</div>
         </div>
       </div>
     </div>
@@ -727,8 +727,8 @@ body {
             <div class="flow-body">
               <strong>Ranged / Melee:</strong> 1d20 + relevant stat vs. target <em>Evasion</em><br>
               <strong>Tech attack:</strong> 1d20 + Tech Attack vs. target <em>E-Defense</em><br>
-              <strong>Accuracy:</strong> Roll extra d6, <em>add</em> highest result to d20<br>
-              <strong>Difficulty:</strong> Roll extra d6, <em>subtract</em> highest result from d20
+              <strong>Accuracy:</strong> roll an extra d6, add it to your d20<br>
+              <strong>Difficulty:</strong> roll an extra d6, subtract it from your d20
             </div>
           </div>
         </div>
@@ -739,7 +739,7 @@ body {
             <div class="flow-body">
               <strong>Miss:</strong> No effect (some weapons have miss effects)<br>
               <strong>Hit:</strong> Roll damage, subtract target's <em>Armor</em><br>
-              <strong>Critical (20+):</strong> Roll damage dice twice, take higher result — <em>then</em> add bonuses
+              <strong>Critical (20+):</strong> Roll damage dice twice, take the higher result, then add flat bonuses
             </div>
           </div>
         </div>
@@ -747,7 +747,7 @@ body {
           <div class="flow-num">4</div>
           <div class="flow-content">
             <div class="flow-head">Apply Damage &amp; Effects</div>
-            <div class="flow-body">Damage reduces target HP. Armor reduces kinetic/energy/explosive damage only — <em>not</em> burn or tech. Apply any bonus effects from the weapon.</div>
+            <div class="flow-body">Damage comes off HP. Armor reduces kinetic, energy, and explosive damage only; it does nothing against burn or tech damage. Apply any extra effects the weapon lists.</div>
           </div>
         </div>
       </div>
@@ -758,11 +758,11 @@ body {
       <div class="card-title">Accuracy &amp; Difficulty</div>
       <div class="math-rows">
         <div class="math-row">
-          <div class="math-label"><strong>+1 Accuracy</strong> — roll 1 extra d6, add the result to your d20 roll.</div>
+          <div class="math-label"><strong>+1 Accuracy:</strong> roll 1 extra d6, add it to your d20.</div>
           <div class="math-formula">d20 + d6</div>
         </div>
         <div class="math-row">
-          <div class="math-label"><strong>+1 Difficulty</strong> — roll 1 extra d6, subtract the result from your d20 roll.</div>
+          <div class="math-label"><strong>+1 Difficulty:</strong> roll 1 extra d6, subtract it from your d20.</div>
           <div class="math-formula">d20 − d6</div>
         </div>
         <div class="math-row">
@@ -774,11 +774,11 @@ body {
           <div class="math-formula">+1 Acc</div>
         </div>
         <div class="math-row">
-          <div class="math-label"><strong>Soft Cover</strong> — obscured or partially obstructed. <strong>+1 Difficulty</strong> to ranged attacks.</div>
+          <div class="math-label"><strong>Soft Cover:</strong> obscured or partially blocked. <strong>+1 Difficulty</strong> to ranged attacks.</div>
           <div class="math-formula">+1 Diff</div>
         </div>
         <div class="math-row">
-          <div class="math-label"><strong>Hard Cover</strong> — adjacent to something solid, same size or smaller. <strong>+2 Difficulty</strong> to ranged attacks.</div>
+          <div class="math-label"><strong>Hard Cover:</strong> adjacent to something solid and same size or smaller. <strong>+2 Difficulty</strong> to ranged attacks.</div>
           <div class="math-formula">+2 Diff</div>
         </div>
       </div>
@@ -792,7 +792,7 @@ body {
       <div class="conditions-list">
         <div class="condition-row">
           <div class="cond-name">Immobilized</div>
-          <div class="cond-effect">Cannot move voluntarily. Can still act and attack.</div>
+          <div class="cond-effect">Can't move voluntarily, but can still act and attack normally.</div>
         </div>
         <div class="condition-row">
           <div class="cond-name orange">Impaired</div>
@@ -800,7 +800,7 @@ body {
         </div>
         <div class="condition-row">
           <div class="cond-name">Slowed</div>
-          <div class="cond-effect">Can only use your standard move — no Boost, no special movement from talents or systems. Actions are unaffected.</div>
+          <div class="cond-effect">Limited to your standard move. No Boost, no special movement from talents or systems. Actions work fine.</div>
         </div>
         <div class="condition-row">
           <div class="cond-name red">Stunned</div>
@@ -828,11 +828,11 @@ body {
         </div>
         <div class="condition-row">
           <div class="cond-name blue">Hidden</div>
-          <div class="cond-effect">Cannot be targeted by hostile actions. Does not cause Engagement. Enemies know only approximate location. Ends if you make any hostile action, reaction, Boost, or lose your concealment.</div>
+          <div class="cond-effect">Can't be targeted by hostile actions at all. Doesn't cause Engagement. Enemies know roughly where you are, not exactly. Ends when you attack, react, Boost, or lose concealment.</div>
         </div>
         <div class="condition-row">
           <div class="cond-name green">Lock On</div>
-          <div class="cond-effect">Any attacker may choose to consume Lock On for <strong>+1 Accuracy</strong> on their attack. Persists until consumed — no round limit. Once consumed, the condition ends.</div>
+          <div class="cond-effect">Any attacker can spend it for <strong>+1 Accuracy</strong> on their roll. No expiry; it just sits there until someone uses it.</div>
         </div>
       </div>
     </div>
@@ -850,11 +850,11 @@ body {
           </div>
           <div class="heat-row warn">
             <div class="heat-threshold">Exposed<span class="heat-threshold-val">At Heat Cap</span></div>
-            <div class="heat-desc"><strong>Exposed condition.</strong> Roll a Stress check (1d6 — see Stress table below). Cleared by Stabilize or Shut Down.</div>
+            <div class="heat-desc"><strong>Exposed condition.</strong> Roll a Stress check (1d6, see table below). Cleared by Stabilize or Shut Down.</div>
           </div>
           <div class="heat-row crit">
             <div class="heat-threshold">Meltdown<span class="heat-threshold-val">Heat Cap while Exposed</span></div>
-            <div class="heat-desc"><strong>Roll Stress check immediately.</strong> If already at max Stress: <strong>reactor meltdown</strong> — mech is destroyed at end of next turn unless Shut Down.</div>
+            <div class="heat-desc"><strong>Roll a Stress check immediately.</strong> If you're already at max Stress, it's a reactor meltdown; the mech goes up at the end of next turn unless you Shut Down.</div>
           </div>
         </div>
       </div>
@@ -873,7 +873,7 @@ body {
             <tr>
               <td><span class="oc-num">1st</span></td>
               <td><span class="oc-roll">1 Heat</span></td>
-              <td class="oc-note" rowspan="4">On Full Repair only — carries over between fights</td>
+              <td class="oc-note" rowspan="4">Full Repair only; it carries over between fights</td>
             </tr>
             <tr>
               <td><span class="oc-num">2nd</span></td>
@@ -898,8 +898,8 @@ body {
           <tbody>
             <tr><td class="dt-roll">5+</td><td class="dt-effect"><strong>Emergency Shunt.</strong> Mech is <strong>Impaired</strong> until end of your next turn.</td></tr>
             <tr><td class="dt-roll">2–4</td><td class="dt-effect"><strong>Power Plant Destabilize.</strong> Mech gains <strong>Exposed</strong> until it takes action to remove it.</td></tr>
-            <tr><td class="dt-roll">1</td><td class="dt-effect"><strong>Meltdown.</strong> Effect depends on Stress remaining — <em>3+:</em> Exposed until removed. <em>2:</em> Engineering save or reactor meltdown in 1d6 turns; still Exposed on success. <em>1 or lower:</em> Reactor meltdown at end of next turn.</td></tr>
-            <tr><td class="dt-roll">Multiple 1s</td><td class="dt-effect"><strong>Irreversible Meltdown.</strong> Reactor goes critical — meltdown at end of next turn. Cannot be prevented.</td></tr>
+            <tr><td class="dt-roll">1</td><td class="dt-effect"><strong>Meltdown.</strong> Effect depends on Stress remaining. <em>3+:</em> Exposed until removed. <em>2:</em> Engineering save or reactor meltdown in 1d6 turns; still Exposed even on a pass. <em>1 or lower:</em> Reactor meltdown at end of next turn.</td></tr>
+            <tr><td class="dt-roll">Multiple 1s</td><td class="dt-effect"><strong>Irreversible Meltdown.</strong> Reactor goes critical. Meltdown at end of next turn, no way to stop it.</td></tr>
           </tbody>
         </table>
       </div>
@@ -926,7 +926,7 @@ body {
           </tr>
           <tr>
             <td class="dt-roll">1</td>
-            <td class="dt-effect"><strong>Direct Hit.</strong> Effect depends on Structure remaining — <em>3+:</em> Stunned until end of next turn. <em>2:</em> Hull save or destroyed; even on success, Stunned. <em>1 or lower:</em> Mech destroyed.</td>
+            <td class="dt-effect"><strong>Direct Hit.</strong> Effect depends on Structure remaining. <em>3+:</em> Stunned until end of next turn. <em>2:</em> Hull save or destroyed; even on a pass, still Stunned. <em>1 or lower:</em> Mech destroyed.</td>
           </tr>
           <tr>
             <td class="dt-roll">Multiple 1s</td>
@@ -935,7 +935,7 @@ body {
         </tbody>
       </table>
       <div class="death-note">
-        <strong>Pilot Death:</strong> A pilot is <em>injured</em> on a Crushing Hit structure result. An injured pilot who takes any further damage makes a Hull save — failure means death, success means they survive at 1 HP. Pilots can eject from a destroyed mech as a free action.
+        <strong>Pilot Death:</strong> A pilot is <em>injured</em> on a Crushing Hit structure result. An injured pilot who takes any further damage rolls a Hull save. Fail and they die; pass and they survive at 1 HP. Pilots can eject from a destroyed mech as a free action.
       </div>
     </div>
 
@@ -952,7 +952,7 @@ body {
           <div class="math-formula">×2 cost</div>
         </div>
         <div class="math-row">
-          <div class="math-label"><strong>Engaged</strong> (adjacent to enemy): moving away triggers <strong>Overwatch</strong>. Use <strong>Disengage</strong> (Full Action) to leave safely — it makes your movement ignore engagement and reactions for the rest of that turn.</div>
+          <div class="math-label"><strong>Engaged</strong> (adjacent to enemy): moving away triggers <strong>Overwatch</strong>. Use <strong>Disengage</strong> (Full Action) to leave cleanly; your movement ignores engagement and reactions for the rest of that turn.</div>
           <div class="math-formula">provokes OW</div>
         </div>
         <div class="math-row">
@@ -999,7 +999,7 @@ body {
       <div class="conditions-list">
         <div class="condition-row" style="grid-template-columns: 110px 1fr;">
           <div class="cond-name green">Stabilize</div>
-          <div class="cond-effect">Full Action. Choose: <strong>cool all Heat</strong> (clears Exposed, Jammed, <strong>and</strong> 1 other condition — all three) OR <strong>spend 1 Repair</strong> to restore HP equal to your Repair value.</div>
+          <div class="cond-effect">Full Action. Choose: <strong>cool all Heat</strong> (clears Exposed, Jammed, <strong>and</strong> 1 other condition; all three) OR <strong>spend 1 Repair</strong> to restore HP equal to your Repair value.</div>
         </div>
         <div class="condition-row" style="grid-template-columns: 110px 1fr;">
           <div class="cond-name green">Repair (Rest)</div>
@@ -1015,7 +1015,7 @@ body {
         </div>
         <div class="condition-row" style="grid-template-columns: 110px 1fr;">
           <div class="cond-name">Stress</div>
-          <div class="cond-effect">Stress damage is <strong>permanent</strong> until a Full Repair. Each point of Stress remaining worsens future <strong>stress check outcomes</strong> — fewer remaining means worse meltdown results. At 4 stress: mech destroyed.</div>
+          <div class="cond-effect">Stress damage is <strong>permanent</strong> until a Full Repair. Each point of Stress remaining makes future <strong>stress check results</strong> worse; the lower the remaining Stress, the uglier the possible outcomes. At 4 stress: mech destroyed.</div>
         </div>
       </div>
     </div>
@@ -1042,7 +1042,7 @@ body {
         </div>
         <div class="tip-item">
           <div class="tip-name">Boost ≠ Move</div>
-          <div class="tip-desc">Boost is a separate Quick Action that lets you move again — it's not part of your standard move.</div>
+          <div class="tip-desc">Boost is a separate Quick Action. It's not a bonus on your standard move; it's a second move action you're spending.</div>
         </div>
         <div class="tip-item">
           <div class="tip-name">Tech vs Evasion</div>
@@ -1050,11 +1050,11 @@ body {
         </div>
         <div class="tip-item">
           <div class="tip-name">HP ≠ Death</div>
-          <div class="tip-desc">Hitting 0 HP triggers Structure damage — you're not dead yet. Your mech might be on fire, but it's still a mech.</div>
+          <div class="tip-desc">Hitting 0 HP triggers a Structure check, not death. The mech keeps going until it hits 4 Structure hits. On fire is fine. Still a mech.</div>
         </div>
         <div class="tip-item">
           <div class="tip-name">1 reaction. Full stop.</div>
-          <div class="tip-desc">You cannot Overwatch <strong>and</strong> Brace in the same round. You get one reaction per round — whichever you use first is the one you get. Choose carefully.</div>
+          <div class="tip-desc">You get one reaction per round, full stop. No Overwatching and then Bracing the next hit. Whichever comes first is the one you spend.</div>
         </div>
       </div>
     </div>
